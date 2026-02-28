@@ -197,7 +197,179 @@ curl -X POST http://localhost:5000/api/admin/celebrities \
   }'
 ```
 
-## 8. Database Management
+## 8. Celebrity Photo Uploads
+
+### Current Implementation (URL-Based)
+
+Currently, celebrity photos are stored as image URLs. When adding or updating a celebrity:
+
+```bash
+curl -X POST http://localhost:5000/api/admin/celebrities \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -d '{
+    "name": "Leonardo DiCaprio",
+    "category": "Actor",
+    "bio": "Award-winning actor",
+    "image": "https://example.com/leonardo.jpg",
+    "followers": 25000000,
+    "yearsActive": "1990-present"
+  }'
+```
+
+### Implementing File Upload Feature
+
+To enable direct file uploads for celebrity photos, follow these steps:
+
+#### 1. Install Required Packages
+
+```bash
+cd backend
+npm install multer sharp uuid
+```
+
+- **multer**: Handle file uploads
+- **sharp**: Image optimization and resizing
+- **uuid**: Generate unique filenames
+
+#### 2. Create Upload Directory
+
+Create a `uploads` folder in the backend:
+
+```bash
+mkdir backend/uploads
+mkdir backend/uploads/celebrities
+```
+
+#### 3. Create Upload Middleware
+
+Create `backend/src/middleware/upload.js`:
+
+```javascript
+import multer from 'multer'
+import path from 'path'
+import { v4 as uuidv4 } from 'uuid'
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/celebrities/')
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname)
+    cb(null, `${uuidv4()}${ext}`)
+  }
+})
+
+const fileFilter = (req, file, cb) => {
+  // Allow only image files
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true)
+  } else {
+    cb(new Error('Only image files are allowed'), false)
+  }
+}
+
+export const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 } // 5MB max
+})
+```
+
+#### 4. Update Admin Route
+
+Modify `backend/src/routes/adminRoutes.js`:
+
+```javascript
+import { upload } from '../middleware/upload.js'
+
+// Photo upload endpoint
+router.post('/celebrities/upload-photo', auth, adminCheck, upload.single('photo'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' })
+    }
+
+    const photoPath = `/uploads/celebrities/${req.file.filename}`
+    res.json({ 
+      message: 'Photo uploaded successfully',
+      path: photoPath,
+      filename: req.file.filename
+    })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+```
+
+#### 5. Serve Static Files
+
+Update `backend/src/server.js`:
+
+```javascript
+// Add after app initialization
+app.use('/uploads', express.static('uploads'))
+```
+
+#### 6. Update Frontend Admin Component
+
+In `frontend/src/pages/AdminPage.jsx`, add file upload:
+
+```javascript
+const [selectedFile, setSelectedFile] = useState(null)
+const [photoUrl, setPhotoUrl] = useState('')
+
+const handlePhotoUpload = async (e) => {
+  const file = e.target.files[0]
+  if (!file) return
+
+  const formData = new FormData()
+  formData.append('photo', file)
+
+  try {
+    const response = await fetch('http://localhost:5000/api/admin/celebrities/upload-photo', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: formData
+    })
+
+    const data = await response.json()
+    setPhotoUrl(`http://localhost:5000${data.path}`)
+  } catch (error) {
+    console.error('Upload failed:', error)
+  }
+}
+
+return (
+  <div>
+    <input 
+      type="file" 
+      accept="image/*" 
+      onChange={handlePhotoUpload}
+    />
+    {photoUrl && <img src={photoUrl} alt="Preview" style={{maxWidth: '200px'}} />}
+  </div>
+)
+```
+
+### Database Schema for Photo Management
+
+If you want to track multiple photos per celebrity, extend the schema:
+
+```sql
+CREATE TABLE IF NOT EXISTS celebrity_photos (
+    id SERIAL PRIMARY KEY,
+    celebrity_id INTEGER NOT NULL REFERENCES celebrities(id) ON DELETE CASCADE,
+    photo_path VARCHAR(500) NOT NULL,
+    caption TEXT,
+    is_primary BOOLEAN DEFAULT FALSE,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## 9. Database Management
 
 ### Connect to Database
 ```bash

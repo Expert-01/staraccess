@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: celebrity-browser-backend
+    runtime: node
+    plan: starter
+    buildCommand: "cd backend && npm install"
+    startCommand: "cd backend && npm start"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DB_URL
+        scope: env
+      - key: JWT_SECRET
+        scope: env
+      - key: STRIPE_SECRET_KEY
+        scope: env
+      - key: STRIPE_PUBLIC_KEY
+        scope: env
+      - key: CORS_ORIGIN
+        value: https://celebrity-browser-frontend.onrender.com
+
+  - type: static
+    name: celebrity-browser-frontend
+    staticPublishPath: ./dist
+    buildCommand: "npm install && npm run build"
+    envVars:
+      - key: VITE_API_URL
+        value: https://celebrity-browser-backend.onrender.com/api
