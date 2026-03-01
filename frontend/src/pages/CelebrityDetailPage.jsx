@@ -8,16 +8,15 @@ function CelebrityDetailPage() {
   const [celebrity, setCelebrity] = useState(null)
   const [loading, setLoading] = useState(true)
   
-  // Construct image URL from API base or use direct URL if online image
+  // Construct image URL - use public folder for local files, keep online URLs as-is
   const getImageUrl = (filename) => {
     if (!filename) return '/placeholder.jpg'
     // If filename is a full URL (starts with http), return as-is
     if (filename.startsWith('http://') || filename.startsWith('https://')) {
       return filename
     }
-    // Otherwise treat as local file
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001'
-    return `${apiUrl}/uploads/celebrities/${filename}`
+    // For local files, serve from public/uploads/celebrities folder
+    return `/uploads/celebrities/${filename}`
   }
 
   useEffect(() => {

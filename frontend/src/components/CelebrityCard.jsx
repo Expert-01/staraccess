@@ -3,16 +3,15 @@ import { useState } from 'react'
 function CelebrityCard({ celebrity, onClick, index }) {
   const [isHovered, setIsHovered] = useState(false)
   
-  // Construct image URL from API base or use direct URL if online image
+  // Construct image URL - use public folder for local files, keep online URLs as-is
   const getImageUrl = () => {
     if (!celebrity.image) return null
     // If image is a full URL (starts with http), return as-is
     if (celebrity.image.startsWith('http://') || celebrity.image.startsWith('https://')) {
       return celebrity.image
     }
-    // Otherwise treat as local file
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001'
-    return `${apiUrl}/uploads/celebrities/${celebrity.image}`
+    // For local files, serve from public/uploads/celebrities folder
+    return `/uploads/celebrities/${celebrity.image}`
   }
 
   // Generate aesthetic gradient backgrounds based on index
