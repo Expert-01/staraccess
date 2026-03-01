@@ -2,6 +2,13 @@ import { useState } from 'react'
 
 function CelebrityCard({ celebrity, onClick, index }) {
   const [isHovered, setIsHovered] = useState(false)
+  
+  // Construct image URL from API base
+  const getImageUrl = () => {
+    if (!celebrity.image) return null
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001'
+    return `${apiUrl}/uploads/celebrities/${celebrity.image}`
+  }
 
   // Generate aesthetic gradient backgrounds based on index
   const gradients = [
@@ -49,7 +56,7 @@ function CelebrityCard({ celebrity, onClick, index }) {
           <div className="w-full h-full flex items-center justify-center">
             {celebrity.image ? (
               <img
-                src={celebrity.image}
+                src={getImageUrl()}
                 alt={celebrity.name}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 onError={(e) => {

@@ -7,6 +7,13 @@ function CelebrityDetailPage() {
   const navigate = useNavigate()
   const [celebrity, setCelebrity] = useState(null)
   const [loading, setLoading] = useState(true)
+  
+  // Construct image URL from API base
+  const getImageUrl = (filename) => {
+    if (!filename) return '/placeholder.jpg'
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001'
+    return `${apiUrl}/uploads/celebrities/${filename}`
+  }
 
   useEffect(() => {
     const fetchCelebrity = async () => {
@@ -43,7 +50,7 @@ function CelebrityDetailPage() {
           <div className="md:col-span-1">
             <div className="aspect-square bg-primary-lightGray rounded-lg overflow-hidden mb-6 border border-primary-mediumGray">
               <img 
-                src={celebrity.image || '/placeholder.jpg'}
+                src={getImageUrl(celebrity.image)}
                 alt={celebrity.name}
                 className="w-full h-full object-cover"
               />

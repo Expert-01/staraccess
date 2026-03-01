@@ -88,9 +88,10 @@ function AdminPage() {
 
       if (response.ok) {
         const data = await response.json()
-        const photoUrl = `http://localhost:5001${data.path}`
+        const photoUrl = data.filename
         setNewCelebrity({ ...newCelebrity, image: photoUrl })
-        setPhotoPreview(photoUrl)
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001'
+        setPhotoPreview(`${apiUrl}/uploads/celebrities/${photoUrl}`)
         alert('Photo uploaded successfully!')
       } else {
         alert('Photo upload failed')

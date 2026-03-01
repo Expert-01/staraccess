@@ -1,12 +1,5 @@
 import { query } from '../db.js'
 
-// Helper function to build image URL
-const buildImageUrl = (filename) => {
-  if (!filename) return null
-  const baseUrl = process.env.API_BASE_URL || 'https://celeb-backend-gy6s.onrender.com'
-  return `${baseUrl}/uploads/celebrities/${filename}`
-}
-
 export const getAllCelebrities = async (req, res) => {
   try {
     const result = await query('SELECT * FROM celebrities')
@@ -24,11 +17,6 @@ export const getAllCelebrities = async (req, res) => {
       }
 
       celebrity.items = items
-      
-      // Transform image to include full URL
-      if (celebrity.image) {
-        celebrity.image = buildImageUrl(celebrity.image)
-      }
     }
 
     res.json(celebrities)
@@ -57,11 +45,6 @@ export const getCelebrityById = async (req, res) => {
     }
 
     celebrity.items = items
-
-    // Transform image to include full URL
-    if (celebrity.image) {
-      celebrity.image = buildImageUrl(celebrity.image)
-    }
 
     res.json(celebrity)
   } catch (err) {
