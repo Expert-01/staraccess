@@ -53,7 +53,7 @@ const MOCK_CELEBRITIES = [
     name: 'Mark Wahlberg',
     category: 'Actor',
     bio: 'Former rapper turned acclaimed actor and producer',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+    image: 'markwahlberg.jpg',
     followers: '3.1M',
     years_active: '1992-Present',
     response_time: '2-3 weeks',
