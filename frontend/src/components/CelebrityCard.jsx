@@ -3,9 +3,14 @@ import { useState } from 'react'
 function CelebrityCard({ celebrity, onClick, index }) {
   const [isHovered, setIsHovered] = useState(false)
   
-  // Construct image URL from API base
+  // Construct image URL from API base or use direct URL if online image
   const getImageUrl = () => {
     if (!celebrity.image) return null
+    // If image is a full URL (starts with http), return as-is
+    if (celebrity.image.startsWith('http://') || celebrity.image.startsWith('https://')) {
+      return celebrity.image
+    }
+    // Otherwise treat as local file
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001'
     return `${apiUrl}/uploads/celebrities/${celebrity.image}`
   }
