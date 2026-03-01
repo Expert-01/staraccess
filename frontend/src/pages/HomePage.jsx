@@ -2,6 +2,120 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CelebrityCard from '../components/CelebrityCard'
 
+// Mock celebrities data
+const MOCK_CELEBRITIES = [
+  {
+    id: 101,
+    name: 'Leonardo DiCaprio',
+    category: 'Actor',
+    bio: 'Academy Award-winning actor and environmental activist',
+    image: 'leonardo-dicaprio.jpg',
+    followers: '2.5M',
+    years_active: '1990-Present',
+    response_time: '1-2 weeks',
+    items: []
+  },
+  {
+    id: 102,
+    name: 'Taylor Swift',
+    category: 'Musician',
+    bio: 'Singer-songwriter with multiple Grammy Awards',
+    image: 'taylor-swift.jpg',
+    followers: '4.8M',
+    years_active: '2004-Present',
+    response_time: '2-3 weeks',
+    items: []
+  },
+  {
+    id: 103,
+    name: 'Zendaya',
+    category: 'Actor',
+    bio: 'Multi-talented actress and fashion icon',
+    image: 'zendaya.jpg',
+    followers: '3.2M',
+    years_active: '2009-Present',
+    response_time: '1-2 weeks',
+    items: []
+  },
+  {
+    id: 104,
+    name: 'The Weeknd',
+    category: 'Musician',
+    bio: 'Gramophone-nominated artist and producer',
+    image: 'the-weeknd.jpg',
+    followers: '3.8M',
+    years_active: '2010-Present',
+    response_time: '2-3 weeks',
+    items: []
+  },
+  {
+    id: 105,
+    name: 'Timothée Chalamet',
+    category: 'Actor',
+    bio: 'Award-winning actor known for indie and Hollywood films',
+    image: 'timothee-chalamet.jpg',
+    followers: '1.9M',
+    years_active: '2014-Present',
+    response_time: '2-3 weeks',
+    items: []
+  },
+  {
+    id: 106,
+    name: 'Dua Lipa',
+    category: 'Musician',
+    bio: 'Grammy Award-winning singer and songwriter',
+    image: 'dua-lipa.jpg',
+    followers: '2.1M',
+    years_active: '2017-Present',
+    response_time: '1-2 weeks',
+    items: []
+  },
+  {
+    id: 107,
+    name: 'Margot Robbie',
+    category: 'Actor',
+    bio: 'Australian actress known for major film roles',
+    image: 'margot-robbie.jpg',
+    followers: '2.8M',
+    years_active: '2008-Present',
+    response_time: '2-3 weeks',
+    items: []
+  },
+  {
+    id: 108,
+    name: 'Harry Styles',
+    category: 'Musician',
+    bio: 'Singer-songwriter and actor formerly of One Direction',
+    image: 'harry-styles.jpg',
+    followers: '3.5M',
+    years_active: '2010-Present',
+    response_time: '2-4 weeks',
+    items: []
+  },
+  {
+    id: 109,
+    name: 'Euphoria Star',
+    category: 'Actor',
+    bio: 'Talented young actor breaking through in Hollywood',
+    image: 'euphoria-star.jpg',
+    followers: '1.5M',
+    years_active: '2015-Present',
+    response_time: '1-2 weeks',
+    items: []
+  },
+  {
+    id: 110,
+    name: 'Rising DJ Star',
+    category: 'Performer',
+    bio: 'Award-winning DJ and music producer',
+    image: 'rising-dj.jpg',
+    followers: '2.2M',
+    years_active: '2012-Present',
+    response_time: '2-3 weeks',
+    items: []
+  }
+]
+
 function HomePage() {
   const navigate = useNavigate()
   const [celebrities, setCelebrities] = useState([])
@@ -10,19 +124,24 @@ function HomePage() {
 
 
   useEffect(() => {
-    // Fetch real data from API
+    // Fetch real data from API, fall back to mock celebrities
     const fetchCelebrities = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities`)
         if (!response.ok) throw new Error('API not available')
         const data = await response.json()
-        // Limit to 10 celebrities
-        setCelebrities(data.slice(0, 10))
+        
+        // If API returns data, use it; otherwise fall back to mock celebrities
+        if (data && data.length > 0) {
+          setCelebrities(data.slice(0, 10))
+        } else {
+          setCelebrities(MOCK_CELEBRITIES)
+        }
         setLoading(false)
       } catch (err) {
-        console.error('Error fetching celebrities:', err)
-        // Show empty state if API fails
-        setCelebrities([])
+        console.error('Error fetching celebrities, using mock data:', err)
+        // Fall back to mock celebrities on API error
+        setCelebrities(MOCK_CELEBRITIES)
         setLoading(false)
       }
     }
@@ -57,7 +176,7 @@ function HomePage() {
         </div>
 
         {/* Masonry Grid - Pinterest Style */}
-        {celebrities.length > 0 ? (
+        {celebrities && celebrities.length > 0 ? (
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
             {celebrities.map((celebrity, index) => (
               <div key={celebrity.id} className="break-inside-avoid">
@@ -73,8 +192,8 @@ function HomePage() {
           <div className="col-span-full text-center py-20">
             <div className="space-y-4">
               <div className="text-6xl">⭐</div>
-              <p className="text-accent-gold/70 text-xl">No celebrities found yet</p>
-              <p className="text-accent-gold/50 text-sm">Check back soon for updates</p>
+              <p className="text-accent-gold/70 text-xl">No celebrities available</p>
+              <p className="text-accent-gold/50 text-sm">Check back soon</p>
             </div>
           </div>
         )}

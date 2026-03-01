@@ -45,6 +45,5 @@ router.post('/celebrities/upload-photo', verifyAdmin, upload.single('photo'), as
     console.error('Upload error:', err)
     res.status(500).json({ message: err.message })
   }
-}))
-
+})
 export default router
