@@ -22,7 +22,7 @@ function PaymentPage() {
 
     try {
       const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-      const response = await fetch('/api/payment/process', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/process`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

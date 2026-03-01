@@ -15,7 +15,7 @@ function AdminPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/celebrities')
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities`)
         const data = await response.json()
         setCelebrities(data)
       } catch (err) {
@@ -30,7 +30,7 @@ function AdminPage() {
     e.preventDefault()
     
     try {
-      const response = await fetch('/api/admin/celebrities', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/celebrities`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ function AdminPage() {
     if (!window.confirm('Are you sure?')) return
 
     try {
-      await fetch(`/api/admin/celebrities/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/admin/celebrities/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -78,7 +78,7 @@ function AdminPage() {
     formData.append('photo', file)
 
     try {
-      const response = await fetch('/api/admin/celebrities/upload-photo', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/celebrities/upload-photo`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

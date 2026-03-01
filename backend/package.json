@@ -8,7 +8,9 @@
     "build": "echo 'Backend build complete'",
     "build:all": "echo 'Full stack build complete'",
     "test": "echo 'Add test command here'",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed.js",
+    "verify-db": "node verify-supabase-schema.js",
+    "test-connection": "node test-supabase-connection.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

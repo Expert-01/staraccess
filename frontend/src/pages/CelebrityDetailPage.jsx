@@ -10,7 +10,7 @@ function CelebrityDetailPage() {
   useEffect(() => {
     const fetchCelebrity = async () => {
       try {
-        const response = await fetch(`/api/celebrities/${id}`)
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities/${id}`)
         const data = await response.json()
         setCelebrity(data)
         setLoading(false)

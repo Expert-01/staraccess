@@ -18,7 +18,7 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
     e.preventDefault()
     
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -61,7 +61,7 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full border border-accent-gold/30 rounded-sm px-4 py-2 focus:outline-none focus:border-accent-gold text-white bg-primary-darkBg"
+              className="w-full border border-accent-gold/50 rounded-sm px-4 py-2 focus:outline-none focus:border-accent-gold text-black bg-white placeholder-gray-400"
               required
             />
           </div>
@@ -73,7 +73,7 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full border border-accent-gold/30 rounded-sm px-4 py-2 focus:outline-none focus:border-accent-gold text-white bg-primary-darkBg"
+              className="w-full border border-accent-gold/50 rounded-sm px-4 py-2 focus:outline-none focus:border-accent-gold text-black bg-white placeholder-gray-400"
               required
             />
           </div>
