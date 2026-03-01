@@ -43,51 +43,51 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-primary-lightGray flex items-center justify-center px-6">
-      <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-md border border-primary-mediumGray">
-        <h2 className="text-3xl font-bold text-black mb-8 text-center">Login</h2>
+    <div className="min-h-screen bg-primary-darkBg flex items-center justify-center px-6">
+      <div className="bg-primary-charcoal rounded-lg shadow-xl p-8 w-full max-w-md border border-accent-gold/20">
+        <h2 className="font-serif text-3xl font-bold text-accent-gold mb-8 text-center">Welcome Back</h2>
         
         {error && (
-          <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded mb-4">
+          <div className="bg-red-900/30 border border-red-600 text-red-400 px-4 py-3 rounded mb-4">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-black font-semibold mb-2">Email</label>
+            <label className="block text-accent-gold font-semibold mb-2">Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full border border-primary-mediumGray rounded px-4 py-2 focus:outline-none focus:border-accent-blue text-black"
+              className="w-full border border-accent-gold/30 rounded-sm px-4 py-2 focus:outline-none focus:border-accent-gold text-white bg-primary-darkBg"
               required
             />
           </div>
 
           <div>
-            <label className="block text-black font-semibold mb-2">Password</label>
+            <label className="block text-accent-gold font-semibold mb-2">Password</label>
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full border border-primary-mediumGray rounded px-4 py-2 focus:outline-none focus:border-accent-blue text-black"
+              className="w-full border border-accent-gold/30 rounded-sm px-4 py-2 focus:outline-none focus:border-accent-gold text-white bg-primary-darkBg"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-accent-blue text-white font-bold py-2 rounded hover:bg-blue-700 transition"
+            className="w-full bg-accent-gold text-primary-darkBg font-bold py-2 rounded-sm hover:bg-accent-goldLight transition uppercase tracking-wider"
           >
             Login
           </button>
         </form>
 
-        <p className="text-center text-neutral-gray mt-6">
-          Don't have an account? <a href="/signup" className="text-accent-blue hover:underline">Sign Up</a>
+        <p className="text-center text-accent-gold/60 mt-6">
+          Don't have an account? <a href="/signup" className="text-accent-gold hover:text-accent-goldLight transition">Sign Up</a>
         </p>
       </div>
     </div>

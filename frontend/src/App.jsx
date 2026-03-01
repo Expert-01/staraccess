@@ -17,7 +17,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-white flex flex-col">
+      <div className="min-h-screen bg-primary-darkBg flex flex-col">
         <Navigation isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
         <main className="flex-grow">
           <Routes>

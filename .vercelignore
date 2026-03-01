@@ -1,0 +1,10 @@
+node_modules
+.git
+.vscode
+backend
+scripts
+*.md
+.env
+.env.local
+.gitignore
+render.yaml

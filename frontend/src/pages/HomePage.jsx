@@ -193,11 +193,11 @@ function HomePage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-white">
+      <div className="flex items-center justify-center min-h-screen bg-primary-darkBg">
         <div className="text-center">
           <div className="animate-pulse space-y-4">
-            <div className="h-12 w-64 bg-primary-mediumGray rounded mx-auto"></div>
-            <div className="h-6 w-96 bg-primary-mediumGray rounded mx-auto"></div>
+            <div className="h-12 w-64 bg-primary-charcoal rounded mx-auto"></div>
+            <div className="h-6 w-96 bg-primary-charcoal rounded mx-auto"></div>
           </div>
         </div>
       </div>
@@ -205,12 +205,12 @@ function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="min-h-screen bg-primary-darkBg px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-black mb-4">Your Celebrity Feed</h1>
-          <p className="text-neutral-lightGray text-lg">Discover and support your favorite celebrities</p>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-accent-gold mb-4">Your Celebrity Feed</h1>
+          <p className="text-accent-gold/70 text-lg">Discover and support your favorite celebrities</p>
         </div>
 
         {/* Masonry Grid - Pinterest Style */}
@@ -229,9 +229,9 @@ function HomePage() {
         ) : (
           <div className="col-span-full text-center py-20">
             <div className="space-y-4">
-              <div className="text-6xl">🌟</div>
-              <p className="text-neutral-lightGray text-xl">No celebrities found yet</p>
-              <p className="text-neutral-gray text-sm">Check back soon for updates</p>
+              <div className="text-6xl">⭐</div>
+              <p className="text-accent-gold/70 text-xl">No celebrities found yet</p>
+              <p className="text-accent-gold/50 text-sm">Check back soon for updates</p>
             </div>
           </div>
         )}

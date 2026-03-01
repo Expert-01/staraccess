@@ -88,7 +88,7 @@ function AdminPage() {
 
       if (response.ok) {
         const data = await response.json()
-        const photoUrl = `http://localhost:5000${data.path}`
+        const photoUrl = `http://localhost:5001${data.path}`
         setNewCelebrity({ ...newCelebrity, image: photoUrl })
         setPhotoPreview(photoUrl)
         alert('Photo uploaded successfully!')
