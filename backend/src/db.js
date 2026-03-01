@@ -19,28 +19,32 @@ if (envLoadResult.error) {
 // Debug: Log all relevant environment variables
 console.log('\n📋 Environment Variables Check:')
 console.log('  DB_URL:', process.env.DB_URL ? '✅ SET' : '❌ NOT SET')
+console.log('  DATABASE_URL:', process.env.DATABASE_URL ? '✅ SET' : '❌ NOT SET')
 console.log('  DB_HOST:', process.env.DB_HOST ? '✅ SET' : '❌ NOT SET')
 console.log('  DB_USER:', process.env.DB_USER ? '✅ SET' : '❌ NOT SET')
 console.log('  DB_PASSWORD:', process.env.DB_PASSWORD ? '✅ SET' : '❌ NOT SET')
 console.log('  NODE_ENV:', process.env.NODE_ENV || '(not set)')
 console.log('')
 
+// Determine which URL to use (DB_URL, DATABASE_URL for Render, or fallback)
+const connectionUrl = process.env.DB_URL || process.env.DATABASE_URL
+
 // Debug: Log which connection method is being used
-console.log('🔧 DB Connection Mode:', process.env.DB_URL ? 'Using DB_URL' : 'Using individual env vars')
-if (process.env.DB_URL) {
+console.log('🔧 DB Connection Mode:', connectionUrl ? 'Using connection URL' : 'Using individual env vars')
+if (connectionUrl) {
   // Mask password in logs
-  const maskedUrl = process.env.DB_URL.replace(/(:)([^@]+)(@)/, '$1***$3')
+  const maskedUrl = connectionUrl.replace(/(:)([^@]+)(@)/, '$1***$3')
   console.log('📍 Connection String:', maskedUrl)
 } else {
-  console.log('📍 Fallback: postgres/postgres@localhost:5432/celebrity_browser')
+  console.log('📍 WARNING: No database URL found! Falling back to localhost (this will fail in production)')
 }
 console.log('')
 
-// Use DB_URL if provided, otherwise build from individual components
+// Use connection URL if provided, otherwise build from individual components
 const pool = new Pool(
-  process.env.DB_URL
+  connectionUrl
     ? {
-        connectionString: process.env.DB_URL,
+        connectionString: connectionUrl,
         ssl: { rejectUnauthorized: false }
       }
     : {
