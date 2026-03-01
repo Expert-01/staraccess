@@ -1,6 +1,62 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ITEM_TYPE_LABELS, getItemIcon } from '../constants/itemTypes'
+import { ITEM_TYPE_LABELS, getItemIcon, ITEM_DESCRIPTIONS } from '../constants/itemTypes'
+
+// Fixed items configuration with all 5 item types and pricing
+const FIXED_ITEMS = [
+  {
+    id: 1,
+    item_type: 'fan_card',
+    description: 'Get your personalized fan card signed by your favorite celebrity.',
+    tiers: [
+      { id: 1, tier_name: 'Bronze', price: 500 },
+      { id: 2, tier_name: 'Silver', price: 750 },
+      { id: 3, tier_name: 'Gold', price: 1000 },
+      { id: 4, tier_name: 'Platinum', price: 1750 }
+    ]
+  },
+  {
+    id: 2,
+    item_type: 'membership_card',
+    description: 'Exclusive membership benefits and perks access.',
+    tiers: [
+      { id: 5, tier_name: 'Bronze', price: 500 },
+      { id: 6, tier_name: 'Silver', price: 750 },
+      { id: 7, tier_name: 'Gold', price: 1000 },
+      { id: 8, tier_name: 'Platinum', price: 1750 }
+    ]
+  },
+  {
+    id: 3,
+    item_type: 'vip_access',
+    description: 'VIP event access and exclusive backstage experience.',
+    tiers: [
+      { id: 9, tier_name: 'Bronze', price: 500 },
+      { id: 10, tier_name: 'Silver', price: 750 },
+      { id: 11, tier_name: 'Gold', price: 1000 },
+      { id: 12, tier_name: 'Platinum', price: 1750 }
+    ]
+  },
+  {
+    id: 4,
+    item_type: 'meet_and_greet',
+    description: 'Meet and greet with your favorite celebrity.',
+    tiers: [
+      { id: 13, tier_name: 'Bronze', price: 500 },
+      { id: 14, tier_name: 'Silver', price: 750 },
+      { id: 15, tier_name: 'Gold', price: 1000 },
+      { id: 16, tier_name: 'Platinum', price: 1750 }
+    ]
+  },
+  {
+    id: 5,
+    item_type: 'call_permit',
+    description: 'One-on-one phone call with the celebrity (30 minutes).',
+    tiers: [
+      { id: 17, tier_name: 'Standard', price: 1000 }
+    ]
+  }
+]
 
 function CelebrityDetailPage() {
   const { id } = useParams()
@@ -24,10 +80,19 @@ function CelebrityDetailPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities/${id}`)
         const data = await response.json()
-        setCelebrity(data)
+        // Use fixed items instead of API items
+        setCelebrity({ ...data, items: FIXED_ITEMS })
         setLoading(false)
       } catch (err) {
         console.error('Error fetching celebrity:', err)
+        // Create a celebrity object with fixed items even if fetch fails
+        setCelebrity({ 
+          id, 
+          name: 'Celebrity',
+          category: 'Unknown',
+          bio: '',
+          items: FIXED_ITEMS 
+        })
         setLoading(false)
       }
     }
