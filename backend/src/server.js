@@ -7,6 +7,7 @@ import pool from './db.js'
 
 import authRoutes from './routes/authRoutes.js'
 import celebrityRoutes from './routes/celebrityRoutes.js'
+import itemRoutes from './routes/itemRoutes.js'
 import paymentRoutes from './routes/paymentRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 
@@ -43,6 +44,7 @@ pool.query('SELECT NOW()', (err, res) => {
 // ============ API Routes ============
 app.use('/api/auth', authRoutes)
 app.use('/api/celebrities', celebrityRoutes)
+app.use('/api/items', itemRoutes)
 app.use('/api/payment', paymentRoutes)
 app.use('/api/admin', adminRoutes)
 

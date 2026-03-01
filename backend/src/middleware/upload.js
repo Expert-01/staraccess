@@ -1,27 +1,8 @@
 import multer from 'multer'
-import path from 'path'
-import fs from 'fs'
 import { v4 as uuidv4 } from 'uuid'
-import { fileURLToPath } from 'url'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const uploadDir = path.join(__dirname, '../../uploads/celebrities')
-
-// Create uploads directory if it doesn't exist
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true })
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir)
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname)
-    const filename = `${uuidv4()}${ext}`
-    cb(null, filename)
-  }
-})
+// Use memory storage instead of disk storage for Render compatibility
+const storage = multer.memoryStorage()
 
 const fileFilter = (req, file, cb) => {
   // Allow only image files

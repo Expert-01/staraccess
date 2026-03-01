@@ -4,6 +4,7 @@ import Navigation from './components/Navigation'
 import LandingPage from './pages/LandingPage'
 import HomePage from './pages/HomePage'
 import CelebrityDetailPage from './pages/CelebrityDetailPage'
+import ItemDetailPage from './pages/ItemDetailPage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import CartPage from './pages/CartPage'
@@ -26,6 +27,7 @@ function App() {
             <Route path="/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} setIsAdmin={setIsAdmin} />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/celebrity/:id" element={<CelebrityDetailPage />} />
+            <Route path="/celebrity/:celebrityId/item/:itemId" element={<ItemDetailPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/admin" element={<AdminPage />} />

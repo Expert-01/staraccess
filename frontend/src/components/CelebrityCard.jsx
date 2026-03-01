@@ -45,16 +45,29 @@ function CelebrityCard({ celebrity, onClick, index }) {
         
         {/* Image Container */}
         <div className={`relative aspect-square bg-gradient-to-br ${gradient} overflow-hidden`}>
-          {/* Placeholder Image */}
+          {/* Actual Image or Placeholder */}
           <div className="w-full h-full flex items-center justify-center">
             {celebrity.image ? (
               <img
                 src={celebrity.image}
                 alt={celebrity.name}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                onError={(e) => {
+                  e.target.style.display = 'none'
+                  e.target.nextElementSibling.style.display = 'flex'
+                }}
               />
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-accent-gold/60 bg-gradient-to-br from-primary-charcoal via-primary-darkBg to-primary-charcoal">
+                <div className="text-6xl mb-4">✨</div>
+                <div className="text-center px-4">
+                  <div className="text-2xl font-bold mb-2 text-accent-gold">{celebrity.name.split(' ')[0]}</div>
+                  <div className="text-sm text-accent-gold/60">{celebrity.category}</div>
+                </div>
+              </div>
+            )}
+            {celebrity.image && (
+              <div style={{ display: 'none' }} className="w-full h-full flex flex-col items-center justify-center text-accent-gold/60 bg-gradient-to-br from-primary-charcoal via-primary-darkBg to-primary-charcoal">
                 <div className="text-6xl mb-4">✨</div>
                 <div className="text-center px-4">
                   <div className="text-2xl font-bold mb-2 text-accent-gold">{celebrity.name.split(' ')[0]}</div>

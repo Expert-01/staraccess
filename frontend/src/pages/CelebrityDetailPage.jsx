@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import ItemCard from '../components/ItemCard'
+import { useParams, useNavigate } from 'react-router-dom'
+import { ITEM_TYPE_LABELS, getItemIcon } from '../constants/itemTypes'
 
 function CelebrityDetailPage() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const [celebrity, setCelebrity] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -23,26 +24,16 @@ function CelebrityDetailPage() {
     fetchCelebrity()
   }, [id])
 
-  const handleAddToCart = (item, quantity) => {
-    const cartItem = {
-      ...item,
-      quantity,
-      cartId: Date.now()
-    }
-    
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-    cart.push(cartItem)
-    localStorage.setItem('cart', JSON.stringify(cart))
-    
-    alert('Added to cart!')
+  const handleItemClick = (itemId) => {
+    navigate(`/celebrity/${id}/item/${itemId}`)
   }
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Loading...</div>
+    return <div className="flex items-center justify-center min-h-screen text-neutral-gray">Loading...</div>
   }
 
   if (!celebrity) {
-    return <div className="flex items-center justify-center min-h-screen">Celebrity not found</div>
+    return <div className="flex items-center justify-center min-h-screen text-neutral-gray">Celebrity not found</div>
   }
 
   return (
@@ -60,12 +51,12 @@ function CelebrityDetailPage() {
           </div>
           
           <div className="md:col-span-2">
-            <h1 className="text-5xl font-bold text-black mb-4">{celebrity.name}</h1>
+            <h1 className="text-5xl font-bold text-primary-black mb-4">{celebrity.name}</h1>
             <p className="text-xl text-neutral-gray mb-6">{celebrity.category}</p>
             <p className="text-neutral-darkGray mb-8 leading-relaxed">{celebrity.bio}</p>
             
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-black">About</h3>
+              <h3 className="text-2xl font-bold text-primary-black">About</h3>
               <ul className="space-y-2 text-neutral-darkGray">
                 <li><strong>Followers:</strong> {celebrity.followers?.toLocaleString() || '0'}</li>
                 <li><strong>Years Active:</strong> {celebrity.yearsActive || 'N/A'}</li>
@@ -76,15 +67,59 @@ function CelebrityDetailPage() {
         </div>
 
         <div>
-          <h2 className="text-3xl font-bold text-black mb-8">Available Items</h2>
+          <h2 className="text-3xl font-bold text-primary-black mb-8">Available Items</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {celebrity.items && celebrity.items.length > 0 ? (
               celebrity.items.map(item => (
-                <ItemCard
+                <div
                   key={item.id}
-                  item={item}
-                  onAdd={handleAddToCart}
-                />
+                  onClick={() => handleItemClick(item.id)}
+                  className="bg-white border border-primary-mediumGray rounded-lg p-6 hover:shadow-lg hover:border-accent-blue transition cursor-pointer"
+                >
+                  {/* Item Icon */}
+                  <div className="text-5xl mb-4">{getItemIcon(item.item_type)}</div>
+                  
+                  {/* Item Name */}
+                  <h3 className="text-xl font-bold text-primary-black mb-2">
+                    {ITEM_TYPE_LABELS[item.item_type]}
+                  </h3>
+                  
+                  {/* Item Description  */}
+                  <p className="text-neutral-gray text-sm mb-4 line-clamp-2">
+                    {item.description}
+                  </p>
+                  
+                  {/* Tier Badges */}
+                  {item.tiers && item.tiers.length > 0 && (
+                    <div className="mb-4">
+                      <p className="text-xs text-neutral-gray mb-2 font-semibold">Available Tiers:</p>
+                      <div className="flex gap-2 flex-wrap">
+                        {item.tiers.map(tier => (
+                          <span
+                            key={tier.id}
+                            className="px-2 py-1 bg-primary-lightGray text-xs font-semibold text-primary-black rounded capitalize"
+                          >
+                            {tier.tier_name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Price Range */}
+                  {item.tiers && item.tiers.length > 0 && (
+                    <div className="pt-4 border-t border-primary-mediumGray">
+                      <p className="text-accent-blue font-bold text-lg">
+                        ${item.tiers[0].price} - ${item.tiers[item.tiers.length - 1].price}
+                      </p>
+                    </div>
+                  )}
+                  
+                  {/* CTA */}
+                  <button className="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded font-semibold hover:bg-accent-blueDark transition">
+                    View Details
+                  </button>
+                </div>
               ))
             ) : (
               <div className="col-span-full text-center py-12">

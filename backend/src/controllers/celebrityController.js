@@ -1,14 +1,34 @@
 import { query } from '../db.js'
 
+// Helper function to build image URL
+const buildImageUrl = (filename) => {
+  if (!filename) return null
+  const baseUrl = process.env.API_BASE_URL || 'https://celeb-backend-gy6s.onrender.com'
+  return `${baseUrl}/uploads/celebrities/${filename}`
+}
+
 export const getAllCelebrities = async (req, res) => {
   try {
     const result = await query('SELECT * FROM celebrities')
     const celebrities = result.rows
 
-    // Get items for each celebrity
+    // Get items for each celebrity and transform image URLs
     for (let celebrity of celebrities) {
       const itemsResult = await query('SELECT * FROM items WHERE celebrity_id = $1', [celebrity.id])
-      celebrity.items = itemsResult.rows
+      const items = itemsResult.rows
+
+      // Get tiers for each item
+      for (let item of items) {
+        const tiersResult = await query('SELECT * FROM item_tiers WHERE item_id = $1', [item.id])
+        item.tiers = tiersResult.rows
+      }
+
+      celebrity.items = items
+      
+      // Transform image to include full URL
+      if (celebrity.image) {
+        celebrity.image = buildImageUrl(celebrity.image)
+      }
     }
 
     res.json(celebrities)
@@ -28,7 +48,20 @@ export const getCelebrityById = async (req, res) => {
     const celebrity = result.rows[0]
 
     const itemsResult = await query('SELECT * FROM items WHERE celebrity_id = $1', [celebrity.id])
-    celebrity.items = itemsResult.rows
+    const items = itemsResult.rows
+
+    // Get tiers for each item
+    for (let item of items) {
+      const tiersResult = await query('SELECT * FROM item_tiers WHERE item_id = $1', [item.id])
+      item.tiers = tiersResult.rows
+    }
+
+    celebrity.items = items
+
+    // Transform image to include full URL
+    if (celebrity.image) {
+      celebrity.image = buildImageUrl(celebrity.image)
+    }
 
     res.json(celebrity)
   } catch (err) {
