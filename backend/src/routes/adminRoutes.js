@@ -7,9 +7,31 @@ import { v4 as uuidv4 } from 'uuid'
 
 const router = express.Router()
 
+// Extract Supabase URL from DB_URL if SUPABASE_URL not explicitly set
+function extractSupabaseUrl() {
+  if (process.env.SUPABASE_URL) {
+    return process.env.SUPABASE_URL
+  }
+
+  // Extract from DB_URL: postgresql://postgres.{projectId}:...
+  const dbUrl = process.env.DB_URL || process.env.DATABASE_URL
+  if (dbUrl) {
+    const projectIdMatch = dbUrl.match(/postgres\.([a-z0-9]+)/)
+    if (projectIdMatch && projectIdMatch[1]) {
+      const projectId = projectIdMatch[1]
+      return `https://${projectId}.supabase.co`
+    }
+  }
+
+  throw new Error('Unable to determine Supabase URL. Set SUPABASE_URL environment variable or ensure DB_URL is properly configured.')
+}
+
 // Initialize Supabase client for storage
-const supabaseUrl = process.env.SUPABASE_URL || 'https://hvgommfahrqadocbmssn.supabase.co'
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2Z29tbWZhaHJxYWRvY2Jtc3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI4MTk2NDAsImV4cCI6MjAxODM5NTY0MH0.EKJwJKvWLRF7z-8t_UHVkVHl4nDrNjXq5_xCl4q1W9g'
+const supabaseUrl = extractSupabaseUrl()
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
+if (!supabaseAnonKey) {
+  throw new Error('SUPABASE_ANON_KEY environment variable is not set')
+}
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 router.post('/celebrities', verifyAdmin, addCelebrity)
