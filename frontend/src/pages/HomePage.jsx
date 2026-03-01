@@ -20,7 +20,7 @@ const MOCK_CELEBRITIES = [
     name: 'Taylor Swift',
     category: 'Musician',
     bio: 'Singer-songwriter with multiple Grammy Awards',
-    image: 'taylor-swift.jpg',
+    image: 'markwahlberg.jpg',
     followers: '4.8M',
     years_active: '2004-Present',
     response_time: '2-3 weeks',
