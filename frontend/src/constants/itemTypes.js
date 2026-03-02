@@ -16,7 +16,7 @@ export const ITEM_TYPE_LABELS = {
 }
 
 export const ITEM_DESCRIPTIONS = {
-  fan_card: 'Get your personalized fan card signed by your favorite celebrity.',
+  fan_card: 'Get your personalized fan card signed by your favorite celebrity eeeeeeee.',
   membership_card: 'Exclusive membership benefits and perks.',
   call_permit: 'One-on-one phone call with the celebrity (30 minutes).',
   vip_access: 'VIP event access and exclusive backstage experience.',
@@ -39,7 +39,7 @@ export const TIERS = {
   BRONZE: 'bronze',
   SILVER: 'silver',
   GOLD: 'gold',
-  PLATINUM: 'platinummmaddeness',
+  PLATINUM: 'platinum',
   STANDARD: 'standard'
 }
 

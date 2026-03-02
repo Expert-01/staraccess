@@ -13,7 +13,7 @@ import adminRoutes from './routes/adminRoutes.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5001
 
 // ============ CORS Configuration ============
 const corsOptions = {

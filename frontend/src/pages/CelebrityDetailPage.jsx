@@ -7,7 +7,7 @@ const FIXED_ITEMS = [
   {
     id: 1,
     item_type: 'fan_card',
-    description: 'Get your personalized fan card signed by your favorite celebrity.',
+    description: 'Get your personalized fan card signed by your favorite celebrity tesing testing ....',
     tiers: [
       { id: 1, tier_name: 'Bronze', price: 500 },
       { id: 2, tier_name: 'Silver', price: 750 },
@@ -80,11 +80,9 @@ function CelebrityDetailPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities/${id}`)
         const data = await response.json()
-        console.log('📦 Celebrity API Response:', data)
-        // Use items from API, or fall back to fixed items if none exist
-        const items = data.items && data.items.length > 0 ? data.items : FIXED_ITEMS
-        console.log('🎁 Processed items:', items)
-        setCelebrity({ ...data, items })
+        console.log('📦 FULL Celebrity API Response:', data)
+        // For now, ALWAYS use FIXED_ITEMS to test price display
+        setCelebrity({ ...data, items: FIXED_ITEMS })
         setLoading(false)
       } catch (err) {
         console.error('Error fetching celebrity:', err)
@@ -138,8 +136,8 @@ function CelebrityDetailPage() {
               <h3 className="text-2xl font-bold text-primary-black">About</h3>
               <ul className="space-y-2 text-neutral-darkGray">
                 <li><strong>Followers:</strong> {celebrity.followers?.toLocaleString() || '0'}</li>
-                <li><strong>Years Active:</strong> {celebrity.yearsActive || 'N/A'}</li>
-                <li><strong>Response Time:</strong> {celebrity.responseTime || 'Variable'}</li>
+                <li><strong>Years Active:</strong> {celebrity.yearsActive || '20+ Years'}</li>
+                <li><strong>Response Time:</strong> {celebrity.responseTime || '24-48 hours'}</li>
               </ul>
             </div>
           </div>
@@ -186,45 +184,21 @@ function CelebrityDetailPage() {
                   )}
                   
                   {/* Price Range */}
-                  {(() => {
-                    // Try to get price from API tiers
-                    if (item.tiers && item.tiers.length > 0) {
-                      if (item.tiers.length === 1) {
-                        return (
-                          <div className="pt-4 border-t border-primary-mediumGray">
-                            <p className="text-accent-blue font-bold text-lg">
-                              ${item.tiers[0].price || 'N/A'}
-                            </p>
-                          </div>
-                        )
-                      } else {
-                        return (
-                          <div className="pt-4 border-t border-primary-mediumGray">
-                            <p className="text-accent-blue font-bold text-lg">
-                              ${Math.min(...item.tiers.map(t => t.price || 0))} - ${Math.max(...item.tiers.map(t => t.price || 0))}
-                            </p>
-                          </div>
-                        )
-                      }
-                    }
-                    
-                    // Fallback to hardcoded prices based on item_type
-                    const priceMap = {
-                      'fan_card': '$500 - $1750',
-                      'membership_card': '$500 - $1750',
-                      'call_permit': '$1000',
-                      'vip_access': '$500 - $1750',
-                      'meet_and_greet': '$500 - $1750'
-                    }
-                    
-                    return (
-                      <div className="pt-4 border-t border-primary-mediumGray">
-                        <p className="text-accent-blue font-bold text-lg">
-                          {priceMap[item.item_type] || 'Price unavailable'}
-                        </p>
-                      </div>
-                    )
-                  })()}
+                  <div className="pt-4 border-t border-primary-mediumGray">
+                    {item.tiers && Array.isArray(item.tiers) && item.tiers.length > 1 ? (
+                      <p className="text-accent-blue font-bold text-lg">
+                        ${Math.min(...item.tiers.map(t => t.price || 0))} - ${Math.max(...item.tiers.map(t => t.price || 0))}
+                      </p>
+                    ) : item.tiers && Array.isArray(item.tiers) && item.tiers.length === 1 ? (
+                      <p className="text-accent-blue font-bold text-lg">
+                        ${item.tiers[0].price}
+                      </p>
+                    ) : item.item_type === 'call_permit' ? (
+                      <p className="text-accent-blue font-bold text-lg">$1000</p>
+                    ) : (
+                      <p className="text-accent-blue font-bold text-lg">$500 - $1750</p>
+                    )}
+                  </div>
                   
                   {/* CTA */}
                   <button className="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded font-semibold hover:bg-accent-blueDark transition">

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Preloader from '../components/Preloader'
 
 function LoginPage({ setIsAuthenticated, setIsAdmin }) {
   const navigate = useNavigate()
@@ -8,6 +9,7 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
     password: ''
   })
   const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -16,6 +18,8 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
+    setError('')
     
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
@@ -36,15 +40,19 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
         }
       } else {
         setError('Invalid email or password')
+        setIsLoading(false)
       }
     } catch (err) {
       setError('Login failed')
+      setIsLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-primary-darkBg flex items-center justify-center px-6">
-      <div className="bg-primary-charcoal rounded-lg shadow-xl p-8 w-full max-w-md border border-accent-gold/20">
+    <>
+      {isLoading && <Preloader />}
+      <div className="min-h-screen bg-primary-darkBg flex items-center justify-center px-6">
+        <div className="bg-primary-charcoal rounded-lg shadow-xl p-8 w-full max-w-md border border-accent-gold/20">
         <h2 className="font-serif text-3xl font-bold text-accent-gold mb-8 text-center">Welcome Back</h2>
         
         {error && (
@@ -91,6 +99,7 @@ function LoginPage({ setIsAuthenticated, setIsAdmin }) {
         </p>
       </div>
     </div>
+    </>
   )
 }
 

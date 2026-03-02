@@ -20,7 +20,7 @@ const ItemDetailPage = () => {
     try {
       setLoading(true)
       const response = await fetch(
-        `http://localhost:5000/api/items/celebrity/${celebrityId}/item/${itemId}`
+        `http://localhost:5001/api/items/celebrity/${celebrityId}/item/${itemId}`
       )
       
       if (!response.ok) {

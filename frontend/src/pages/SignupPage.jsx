@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Preloader from '../components/Preloader'
 
 function SignupPage({ setIsAuthenticated }) {
   const navigate = useNavigate()
@@ -10,6 +11,7 @@ function SignupPage({ setIsAuthenticated }) {
     confirmPassword: ''
   })
   const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -18,9 +20,12 @@ function SignupPage({ setIsAuthenticated }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
+    setError('')
     
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match')
+      setIsLoading(false)
       return
     }
 
@@ -36,15 +41,19 @@ function SignupPage({ setIsAuthenticated }) {
         navigate('/home')
       } else {
         setError('Signup failed')
+        setIsLoading(false)
       }
     } catch (err) {
       setError('Error creating account')
+      setIsLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-primary-darkBg flex items-center justify-center px-6">
-      <div className="bg-primary-charcoal rounded-lg shadow-xl p-8 w-full max-w-md border border-accent-gold/20">
+    <>
+      {isLoading && <Preloader />}
+      <div className="min-h-screen bg-primary-darkBg flex items-center justify-center px-6">
+        <div className="bg-primary-charcoal rounded-lg shadow-xl p-8 w-full max-w-md border border-accent-gold/20">
         <h2 className="font-serif text-3xl font-bold text-accent-gold mb-8 text-center">Create Account</h2>
         
         {error && (
@@ -115,6 +124,7 @@ function SignupPage({ setIsAuthenticated }) {
         </p>
       </div>
     </div>
+    </>
   )
 }
 
