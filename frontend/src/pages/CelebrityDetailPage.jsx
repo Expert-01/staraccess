@@ -186,19 +186,45 @@ function CelebrityDetailPage() {
                   )}
                   
                   {/* Price Range */}
-                  {item.tiers && item.tiers.length > 0 && (
-                    <div className="pt-4 border-t border-primary-mediumGray">
-                      {item.tiers.length === 1 ? (
+                  {(() => {
+                    // Try to get price from API tiers
+                    if (item.tiers && item.tiers.length > 0) {
+                      if (item.tiers.length === 1) {
+                        return (
+                          <div className="pt-4 border-t border-primary-mediumGray">
+                            <p className="text-accent-blue font-bold text-lg">
+                              ${item.tiers[0].price || 'N/A'}
+                            </p>
+                          </div>
+                        )
+                      } else {
+                        return (
+                          <div className="pt-4 border-t border-primary-mediumGray">
+                            <p className="text-accent-blue font-bold text-lg">
+                              ${Math.min(...item.tiers.map(t => t.price || 0))} - ${Math.max(...item.tiers.map(t => t.price || 0))}
+                            </p>
+                          </div>
+                        )
+                      }
+                    }
+                    
+                    // Fallback to hardcoded prices based on item_type
+                    const priceMap = {
+                      'fan_card': '$500 - $1750',
+                      'membership_card': '$500 - $1750',
+                      'call_permit': '$1000',
+                      'vip_access': '$500 - $1750',
+                      'meet_and_greet': '$500 - $1750'
+                    }
+                    
+                    return (
+                      <div className="pt-4 border-t border-primary-mediumGray">
                         <p className="text-accent-blue font-bold text-lg">
-                          ${item.tiers[0].price || 'N/A'}
+                          {priceMap[item.item_type] || 'Price unavailable'}
                         </p>
-                      ) : (
-                        <p className="text-accent-blue font-bold text-lg">
-                          ${Math.min(...item.tiers.map(t => t.price || 0))} - ${Math.max(...item.tiers.map(t => t.price || 0))}
-                        </p>
-                      )}
-                    </div>
-                  )}
+                      </div>
+                    )
+                  })()}
                   
                   {/* CTA */}
                   <button className="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded font-semibold hover:bg-accent-blueDark transition">
