@@ -74,16 +74,20 @@ function LandingPage() {
           {/* Celebrity Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
             {[
-              { name: 'Leonardo DiCaprio', status: 'Officially Managed' },
-              { name: 'Zendaya', status: 'Officially Managed' },
-              { name: 'Chris Hemsworth', status: 'Officially Managed' },
-              { name: 'Cardi B', status: 'Officially Managed' },
-              { name: 'Keanu Reeves', status: 'Officially Managed' },
-              { name: 'Sandra Bullock', status: 'Officially Managed' },
+              { name: 'Leonardo DiCaprio', image: 'leonardodicaprio.jpg', status: 'Officially Managed' },
+              { name: 'Zendaya', image: 'zendaya.jpg', status: 'Officially Managed' },
+              { name: 'Chris Hemsworth', image: 'chrishemsworth.jpg', status: 'Officially Managed' },
+              { name: 'Mark Wahlberg', image: 'markwahlberg.jpg', status: 'Officially Managed' },
+              { name: 'Sandra Bullock', image: 'sandrabullocks.jpg', status: 'Officially Managed' },
+              { name: 'Zac Efron', image: 'zacefron.jpg', status: 'Officially Managed' },
             ].map((celebrity, idx) => (
               <div key={idx} className="text-center group cursor-pointer">
-                <div className="w-full aspect-square rounded-full bg-gradient-to-br from-accent-gold/30 to-accent-bronze/30 mb-4 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-accent-gold/20 transition duration-300 overflow-hidden">
-                  <div className="text-5xl">⭐</div>
+                <div className="w-full aspect-square rounded-full bg-gradient-to-br from-accent-gold/30 to-accent-bronze/30 mb-4 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-accent-gold/20 transition duration-300 overflow-hidden border-2 border-accent-gold/30 group-hover:border-accent-gold/60 transition">
+                  <img 
+                    src={`/uploads/celebrities/${celebrity.image}`} 
+                    alt={celebrity.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-accent-gold font-semibold text-sm mb-1">{celebrity.name}</h3>
                 <p className="text-accent-gold/60 text-xs">{celebrity.status}</p>
