@@ -19,7 +19,7 @@ services:
       - key: STRIPE_PUBLIC_KEY
         scope: env
       - key: CORS_ORIGIN
-        value: https://celebrity-browser-frontend.onrender.com
+        value: https://celebrity-browser-frontend.onrender.com,https://staraccess.vercel.app,https://celebritybrowser.vercel.app,http://localhost:3000,http://localhost:5173
 
   - type: static
     name: celebrity-browser-frontend
