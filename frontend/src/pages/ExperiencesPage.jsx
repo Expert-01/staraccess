@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaStar, FaTheaterMasks, FaGift, FaGem, FaCheckCircle, FaShield, FaAward, FaRocket, FaTicketAlt, FaCreditCard, FaCrown, FaHandshake, FaPhone } from 'react-icons/fa'
+import { FaStar, FaTheaterMasks, FaGift, FaGem, FaCheckCircle, FaLock, FaAward, FaRocket, FaTicketAlt, FaCreditCard, FaCrown, FaHandshake, FaPhone } from 'react-icons/fa'
 
 function ExperiencesPage() {
   return (
@@ -178,7 +178,7 @@ function ExperiencesPage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-6xl mb-4"><FaShield className="w-16 h-16 text-accent-gold mx-auto" /></div>
+              <div className="text-6xl mb-4"><FaLock className="w-16 h-16 text-accent-gold mx-auto" /></div>
               <h3 className="text-2xl font-bold text-accent-gold mb-3">Verified & Safe</h3>
               <p className="text-accent-gold/70">All celebrities and interactions are verified. Your privacy and security are our top priorities.</p>
             </div>
