@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaStar, FaMask, FaGift, FaDiamond, FaCheckCircle, FaLock, FaAward, FaRocket, FaTicketAlt, FaCreditCard, FaCrown, FaHandshake, FaPhone } from 'react-icons/fa'
+import { FaStar, FaEye, FaGift, FaTrophy, FaCheckCircle, FaLock, FaAward, FaRocket, FaTicketAlt, FaCreditCard, FaCrown, FaHandshake, FaPhone } from 'react-icons/fa'
 
 function ExperiencesPage() {
   return (
@@ -42,7 +42,7 @@ function ExperiencesPage() {
 
           {/* Premium Access */}
           <div className="bg-primary-charcoal rounded-lg p-8 border border-accent-gold/20 hover:border-accent-gold/50 transition">
-            <div className="text-6xl mb-6"><FaMask className="w-16 h-16 text-accent-gold" /></div>
+            <div className="text-6xl mb-6"><FaEye className="w-16 h-16 text-accent-gold" /></div>
             <h2 className="font-serif text-3xl font-bold text-accent-gold mb-4">VIP Event Access</h2>
             <p className="text-accent-gold/70 leading-relaxed mb-6">
               Step behind the velvet rope and experience exclusive events. From premiere parties to intimate meet & greets, access experiences that aren't available to the general public.
@@ -88,7 +88,7 @@ function ExperiencesPage() {
 
           {/* Premium Membership */}
           <div className="bg-primary-charcoal rounded-lg p-8 border border-accent-gold/20 hover:border-accent-gold/50 transition">
-            <div className="text-6xl mb-6"><FaDiamond className="w-16 h-16 text-accent-gold" /></div>
+            <div className="text-6xl mb-6"><FaTrophy className="w-16 h-16 text-accent-gold" /></div>
             <h2 className="font-serif text-3xl font-bold text-accent-gold mb-4">Premium Membership Tiers</h2>
             <p className="text-accent-gold/70 leading-relaxed mb-6">
               Choose your tier and unlock benefits that match your lifestyle. From Bronze to Platinum, each tier offers increasing levels of exclusivity and access.

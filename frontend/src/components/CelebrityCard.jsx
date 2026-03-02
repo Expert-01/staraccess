@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaFilm, FaHeadphones, FaMusic, FaFootball, FaVideo, FaCompactDisc, FaStar, FaHeart, FaCalendar } from 'react-icons/fa'
+import { FaFilm, FaHeadphones, FaMusic, FaRunning, FaVideo, FaCog, FaStar, FaHeart, FaCalendar } from 'react-icons/fa'
 
 function CelebrityCard({ celebrity, onClick, index }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -37,9 +37,9 @@ function CelebrityCard({ celebrity, onClick, index }) {
       'Actor': <FaFilm className="w-4 h-4" />,
       'Performer': <FaHeadphones className="w-4 h-4" />,
       'Musician': <FaMusic className="w-4 h-4" />,
-      'Athlete': <FaFootball className="w-4 h-4" />,
+      'Athlete': <FaRunning className="w-4 h-4" />,
       'Director': <FaVideo className="w-4 h-4" />,
-      'Producer': <FaCompactDisc className="w-4 h-4" />,
+      'Producer': <FaCog className="w-4 h-4" />,
       'Other': <FaStar className="w-4 h-4" />
     }
     return icons[category] || icons['Other']
@@ -79,7 +79,8 @@ function CelebrityCard({ celebrity, onClick, index }) {
               </div>
             )}
             {celebrity.image && (
-                  <div className="mb-4"><FaHeart className="w-16 h-16" /></div>
+              <div style={{ display: 'none' }} className="w-full h-full flex flex-col items-center justify-center text-accent-gold/60 bg-gradient-to-br from-primary-charcoal via-primary-darkBg to-primary-charcoal">
+                <div className="mb-4"><FaHeart className="w-16 h-16" /></div>
                 <div className="text-center px-4">
                   <div className="text-2xl font-bold mb-2 text-accent-gold">{celebrity.name.split(' ')[0]}</div>
                   <div className="text-sm text-accent-gold/60">{celebrity.category}</div>
