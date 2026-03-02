@@ -16,14 +16,19 @@ const app = express()
 const PORT = process.env.PORT || 5001
 
 // ============ CORS Configuration ============
+const defaultOrigins = ['http://localhost:3000', 'http://localhost:5173', 'https://celebritybrowser.vercel.app', 'https://staraccess.vercel.app']
+const corsOrigins = process.env.CORS_ORIGIN 
+  ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
+  : defaultOrigins
+
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN
-    ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
-    : ['http://localhost:3000', 'http://localhost:5173', "https://celebritybrowser.vercel.app", "https://staraccess.vercel.app  "],
+  origin: corsOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }
+
+console.log('🔐 CORS enabled for:', corsOrigins)
 
 app.use(cors(corsOptions))
 app.use(express.json({ limit: '10mb' }))
