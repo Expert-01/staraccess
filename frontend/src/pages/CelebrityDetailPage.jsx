@@ -186,9 +186,16 @@ function CelebrityDetailPage() {
                   {/* Price Range */}
                   {item.tiers && item.tiers.length > 0 && (
                     <div className="pt-4 border-t border-primary-mediumGray">
-                      <p className="text-accent-blue font-bold text-lg">
-                        ${item.tiers[0].price} - ${item.tiers[item.tiers.length - 1].price}
-                      </p>
+                      {(() => {
+                        const prices = item.tiers.map(t => t.price).filter(p => p !== null && p !== undefined).sort((a, b) => a - b)
+                        const minPrice = prices[0]
+                        const maxPrice = prices[prices.length - 1]
+                        return (
+                          <p className="text-accent-blue font-bold text-lg">
+                            {minPrice === maxPrice ? `$${minPrice}` : `$${minPrice} - $${maxPrice}`}
+                          </p>
+                        )
+                      })()}
                     </div>
                   )}
                   

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { FiLock, FiCheckCircle, FiFileText } from 'react-icons/fi'
+import { MdBusinessCenter, MdTheaterComedy, MdMovieCreation, MdLocationCity } from 'react-icons/md'
 
 function LandingPage() {
   return (
@@ -44,17 +46,17 @@ function LandingPage() {
       <div className="bg-primary-charcoal py-16 border-t border-b border-accent-gold/20">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
           <div className="flex flex-col items-center gap-3">
-            <div className="text-4xl">🔒</div>
+            <FiLock className="text-5xl text-accent-gold" />
             <p className="text-accent-gold font-semibold">Secure Payments</p>
             <p className="text-accent-gold/60 text-sm">Industry-standard encryption</p>
           </div>
           <div className="flex flex-col items-center gap-3">
-            <div className="text-4xl">✓</div>
+            <FiCheckCircle className="text-5xl text-accent-gold" />
             <p className="text-accent-gold font-semibold">Verified Partnerships</p>
             <p className="text-accent-gold/60 text-sm">Directly managed celebrities</p>
           </div>
           <div className="flex flex-col items-center gap-3">
-            <div className="text-4xl">👔</div>
+            <MdBusinessCenter className="text-5xl text-accent-gold" />
             <p className="text-accent-gold font-semibold">Licensed Management Team</p>
             <p className="text-accent-gold/60 text-sm">Professional coordination</p>
           </div>
@@ -105,27 +107,30 @@ function LandingPage() {
               {
                 title: 'Backstage Meet & Greet',
                 desc: 'Meet your idol behind the scenes',
-                icon: '🎭'
+                icon: MdTheaterComedy
               },
               {
                 title: 'VIP Premiere Access',
                 desc: 'Exclusive invitations to red carpet events',
-                icon: '🎬'
+                icon: MdMovieCreation
               },
               {
                 title: 'Signed Memorabilia',
                 desc: 'Own limited edition autographed items',
-                icon: '📝'
+                icon: FiFileText
               }
-            ].map((exp, idx) => (
+            ].map((exp, idx) => {
+              const IconComponent = exp.icon
+              return (
               <div key={idx} className="group cursor-pointer">
                 <div className="h-72 rounded-lg overflow-hidden mb-6 bg-gradient-to-br from-accent-gold/10 to-accent-bronze/10 flex items-center justify-center group-hover:shadow-2xl group-hover:shadow-accent-gold/20 transition duration-300">
-                  <div className="text-7xl">{exp.icon}</div>
+                  <IconComponent className="text-7xl text-accent-gold" />
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-accent-gold mb-2">{exp.title}</h3>
                 <p className="text-accent-gold/70">{exp.desc}</p>
               </div>
-            ))}
+            )
+            })}
           </div>
 
           <div className="text-center">
@@ -173,7 +178,7 @@ function LandingPage() {
           </div>
 
           <div className="border-t border-accent-gold/20 pt-8 flex flex-col md:flex-row justify-between items-center text-accent-gold/60 text-sm">
-            <p>12-54 Sunset Blvd, Los Angeles, CA 🏙️</p>
+            <p className="flex items-center gap-2">12-54 Sunset Blvd, Los Angeles, CA <MdLocationCity className="text-lg text-accent-gold" /></p>
             <div className="flex gap-6 mt-4 md:mt-0">
               <a href="#" className="hover:text-accent-gold transition">Partnerships</a>
               <a href="#" className="hover:text-accent-gold transition">Milboard</a>
