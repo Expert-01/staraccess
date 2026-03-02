@@ -1,4 +1,6 @@
 // Item types and pricing configuration
+import { FaTicketAlt, FaCreditCard, FaPhone, FaStar, FaHandshake, FaBox } from 'react-icons/fa'
+
 export const ITEM_TYPES = {
   FAN_CARD: 'fan_card',
   MEMBERSHIP_CARD: 'membership_card',
@@ -75,11 +77,11 @@ export const getTierColor = (tierName) => {
 // Get icon for item type
 export const getItemIcon = (itemType) => {
   const icons = {
-    fan_card: '🎫',
-    membership_card: '💳',
-    call_permit: '☎️',
-    vip_access: '⭐',
-    meet_and_greet: '🤝'
+    fan_card: <FaTicketAlt className="w-5 h-5" />,
+    membership_card: <FaCreditCard className="w-5 h-5" />,
+    call_permit: <FaPhone className="w-5 h-5" />,
+    vip_access: <FaStar className="w-5 h-5" />,
+    meet_and_greet: <FaHandshake className="w-5 h-5" />
   }
-  return icons[itemType] || '📦'
+  return icons[itemType] || <FaBox className="w-5 h-5" />
 }

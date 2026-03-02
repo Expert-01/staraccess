@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FaFilm, FaMicrophone, FaMusic, FaFootball, FaVideo, FaFilmStrip, FaStar, FaSparkles, FaCalendar } from 'react-icons/fa'
 
 function CelebrityCard({ celebrity, onClick, index }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -33,13 +34,13 @@ function CelebrityCard({ celebrity, onClick, index }) {
   // Category icons
   const getCategoryIcon = (category) => {
     const icons = {
-      'Actor': '🎬',
-      'Performer': '🎤',
-      'Musician': '🎵',
-      'Athlete': '⚽',
-      'Director': '🎥',
-      'Producer': '🎞️',
-      'Other': '⭐'
+      'Actor': <FaFilm className="w-4 h-4" />,
+      'Performer': <FaMicrophone className="w-4 h-4" />,
+      'Musician': <FaMusic className="w-4 h-4" />,
+      'Athlete': <FaFootball className="w-4 h-4" />,
+      'Director': <FaVideo className="w-4 h-4" />,
+      'Producer': <FaFilmStrip className="w-4 h-4" />,
+      'Other': <FaStar className="w-4 h-4" />
     }
     return icons[category] || icons['Other']
   }
@@ -70,7 +71,7 @@ function CelebrityCard({ celebrity, onClick, index }) {
               />
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-accent-gold/60 bg-gradient-to-br from-primary-charcoal via-primary-darkBg to-primary-charcoal">
-                <div className="text-6xl mb-4">✨</div>
+                <div className="mb-4"><FaSparkles className="w-16 h-16" /></div>
                 <div className="text-center px-4">
                   <div className="text-2xl font-bold mb-2 text-accent-gold">{celebrity.name.split(' ')[0]}</div>
                   <div className="text-sm text-accent-gold/60">{celebrity.category}</div>
@@ -79,7 +80,7 @@ function CelebrityCard({ celebrity, onClick, index }) {
             )}
             {celebrity.image && (
               <div style={{ display: 'none' }} className="w-full h-full flex flex-col items-center justify-center text-accent-gold/60 bg-gradient-to-br from-primary-charcoal via-primary-darkBg to-primary-charcoal">
-                <div className="text-6xl mb-4">✨</div>
+                <div className="mb-4"><FaSparkles className="w-16 h-16" /></div>
                 <div className="text-center px-4">
                   <div className="text-2xl font-bold mb-2 text-accent-gold">{celebrity.name.split(' ')[0]}</div>
                   <div className="text-sm text-accent-gold/60">{celebrity.category}</div>
@@ -105,8 +106,8 @@ function CelebrityCard({ celebrity, onClick, index }) {
           </div>
 
           {/* Followers Badge */}
-          <div className="absolute top-3 left-3 bg-accent-gold/90 text-primary-darkBg px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-            ⭐ {celebrity.followers}
+          <div className="absolute top-3 left-3 bg-accent-gold/90 text-primary-darkBg px-3 py-1 rounded-full text-xs font-semibold shadow-lg flex items-center gap-1">
+            <FaStar className="w-3 h-3" /> {celebrity.followers}
           </div>
         </div>
 
@@ -124,7 +125,7 @@ function CelebrityCard({ celebrity, onClick, index }) {
 
           {/* Years Active */}
           <div className="text-xs text-accent-gold/50 mb-4 flex items-center gap-1">
-            📅 {celebrity.years_active}
+            <FaCalendar className="w-3 h-3" /> {celebrity.years_active}
           </div>
 
           {/* Items Tags */}

@@ -1,29 +1,30 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CelebrityCard from '../components/CelebrityCard'
+import { FaStar } from 'react-icons/fa'
 
 // Mock celebrities data
 const MOCK_CELEBRITIES = [
   {
-    id: 101,
+    id: 13,
     name: 'Neil Diamond',
     category: 'Musician',
     bio: 'Legendary singer-songwriter known for iconic ballads',
     image: 'neildiamond.jpg',
-    followers: '1.8M',
-    years_active: '1966-Present',
-    response_time: '2-3 weeks',
+    followers: 1800000,
+    yearsActive: '1966-Present',
+    responseTime: '2-3 weeks',
     items: []
   },
   {
-    id: 102,
+    id: 8,
     name: 'Lainey Wilson',
     category: 'Musician',
     bio: 'Country music star with a powerful voice and presence',
     image: 'laineywilson.jpg',
-    followers: '2.3M',
-    years_active: '2005-Present',
-    response_time: '1-2 weeks',
+    followers: 2300000,
+    yearsActive: '2005-Present',
+    responseTime: '1-2 weeks',
     items: []
   },
   {
@@ -32,86 +33,86 @@ const MOCK_CELEBRITIES = [
     category: 'Actor',
     bio: 'TV personality and actress known for reality shows',
     image: 'marypadian.jpg',
-    followers: '1.2M',
-    years_active: '2010-Present',
-    response_time: '2-4 weeks',
+    followers: 1200000,
+    yearsActive: '2010-Present',
+    responseTime: '2-4 weeks',
     items: []
   },
   {
-    id: 104,
+    id: 14,
     name: 'Sandra Bullock',
     category: 'Actor',
     bio: 'Academy Award-winning actress with diverse filmography',
     image: 'sandrabullocks.jpg',
-    followers: '2.9M',
-    years_active: '1987-Present',
-    response_time: '2-3 weeks',
+    followers: 2900000,
+    yearsActive: '1987-Present',
+    responseTime: '2-3 weeks',
     items: []
   },
   {
-    id: 105,
+    id: 10,
     name: 'Mark Wahlberg',
     category: 'Actor',
     bio: 'Former rapper turned acclaimed actor and producer',
     image: 'markwahlberg.jpg',
-    followers: '3.1M',
-    years_active: '1992-Present',
-    response_time: '2-3 weeks',
+    followers: 3100000,
+    yearsActive: '1992-Present',
+    responseTime: '2-3 weeks',
     items: []
   },
   {
-    id: 106,
+    id: 15,
     name: 'Skeet Ulrich',
     category: 'Actor',
     bio: 'Talented actor known for horror and thriller roles',
-    image: 'skeeetulrich.jpg',
-    followers: '1.4M',
-    years_active: '1991-Present',
-    response_time: '1-2 weeks',
+    image: 'skeetulrich.jpg',
+    followers: 1400000,
+    yearsActive: '1991-Present',
+    responseTime: '1-2 weeks',
     items: []
   },
   {
-    id: 107,
+    id: 12,
     name: 'Matthew Lillard',
     category: 'Actor',
     bio: 'Versatile actor with impressive range across genres',
-    image: 'matthewlillard.jpg',
-    followers: '1.6M',
-    years_active: '1989-Present',
-    response_time: '2-3 weeks',
+    image: 'mattewlillard.jpg',
+    followers: 1600000,
+    yearsActive: '1989-Present',
+    responseTime: '2-3 weeks',
     items: []
   },
   {
-    id: 108,
+    id: 7,
     name: 'Ian Somerhalder',
     category: 'Actor',
     bio: 'Actor and environmental activist, known for TV roles',
     image: 'iansomerhalder.jpg',
-    followers: '2.7M',
-    years_active: '2003-Present',
-    response_time: '2-4 weeks',
+    followers: 2700000,
+    yearsActive: '2003-Present',
+    responseTime: '2-4 weeks',
     items: []
   },
   {
-    id: 109,
+    id: 9,
     name: 'Luke Perry',
     category: 'Actor',
     bio: 'Iconic actor remembered for beloved television roles',
     image: 'lukeperry.jpg',
-    followers: '1.9M',
-    years_active: '1987-2019',
-    response_time: '2-3 weeks',
+    followers: 1900000,
+    yearsActive: '1987-2019',
+    responseTime: '2-3 weeks',
     items: []
   },
   {
-    id: 110,
+    id: 16,
     name: 'Zac Efron',
     category: 'Actor',
     bio: 'Pop star and actor known for musical and dramatic roles',
     image: 'zacefron.jpg',
-    followers: '3.3M',
-    years_active: '2003-Present',
-    response_time: '2-3 weeks',
+    followers: 3300000,
+    yearsActive: '2003-Present',
+    responseTime: '2-3 weeks',
     items: []
   },
   {
@@ -120,9 +121,9 @@ const MOCK_CELEBRITIES = [
     category: 'Musician',
     bio: 'Hip-hop mogul and business entrepreneur',
     image: 'jayz.jpg',
-    followers: '3.8M',
-    years_active: '1994-Present',
-    response_time: '3-4 weeks',
+    followers: 3800000,
+    yearsActive: '1994-Present',
+    responseTime: '3-4 weeks',
     items: []
   }
 ]
@@ -202,7 +203,7 @@ function HomePage() {
         ) : (
           <div className="col-span-full text-center py-20">
             <div className="space-y-4">
-              <div className="text-6xl">⭐</div>
+              <div className="text-6xl"><FaStar className="w-16 h-16 text-accent-gold mx-auto" /></div>
               <p className="text-accent-gold/70 text-xl">No celebrities available</p>
               <p className="text-accent-gold/50 text-sm">Check back soon</p>
             </div>

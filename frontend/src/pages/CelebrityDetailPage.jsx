@@ -80,7 +80,7 @@ function CelebrityDetailPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities/${id}`)
         const data = await response.json()
-        console.log('📦 FULL Celebrity API Response:', data)
+        console.log('[API] FULL Celebrity API Response:', data)
         // For now, ALWAYS use FIXED_ITEMS to test price display
         setCelebrity({ ...data, items: FIXED_ITEMS })
         setLoading(false)

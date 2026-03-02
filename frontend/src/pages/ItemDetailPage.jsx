@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ITEM_TYPE_LABELS, ITEM_DESCRIPTIONS, getTierColor } from '../constants/itemTypes'
+import { FaBox, FaGift, FaTruck, FaLock, FaArrowLeft, FaMinus, FaPlus } from 'react-icons/fa'
 
 const ItemDetailPage = () => {
   const { celebrityId, itemId } = useParams()
@@ -122,9 +123,9 @@ const ItemDetailPage = () => {
         <div className="max-w-6xl mx-auto px-4 py-6">
           <button
             onClick={handleBack}
-            className="text-accent-blue hover:text-accent-blueDark mb-4 transition"
+            className="text-accent-blue hover:text-accent-blueDark mb-4 transition flex items-center gap-2"
           >
-            ← Back to {celebrity.name}
+            <FaArrowLeft className="w-4 h-4" /> Back to {celebrity.name}
           </button>
           <h1 className="text-4xl font-bold text-primary-black">
             {ITEM_TYPE_LABELS[item.item_type]}
@@ -147,7 +148,7 @@ const ItemDetailPage = () => {
                 />
               ) : (
                 <div className="text-neutral-gray text-center">
-                  <div className="text-6xl mb-2">📦</div>
+                  <div className="mb-2"><FaBox className="w-16 h-16 mx-auto text-accent-gold" /></div>
                   <p>No image available</p>
                 </div>
               )}
@@ -214,9 +215,9 @@ const ItemDetailPage = () => {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-                    className="px-4 py-2 border border-primary-mediumGray rounded hover:bg-primary-mediumGray transition"
+                    className="px-4 py-2 border border-primary-mediumGray rounded hover:bg-primary-mediumGray transition flex items-center justify-center"
                   >
-                    −
+                    <FaMinus className="w-4 h-4" />
                   </button>
                   <input
                     type="number"
@@ -228,9 +229,9 @@ const ItemDetailPage = () => {
                   />
                   <button
                     onClick={() => quantity < selectedTier.stock && setQuantity(quantity + 1)}
-                    className="px-4 py-2 border border-primary-mediumGray rounded hover:bg-primary-mediumGray transition"
+                    className="px-4 py-2 border border-primary-mediumGray rounded hover:bg-primary-mediumGray transition flex items-center justify-center"
                   >
-                    +
+                    <FaPlus className="w-4 h-4" />
                   </button>
                 </div>
                 <p className="text-neutral-gray text-sm mt-2">Available: {selectedTier.stock}</p>
@@ -280,17 +281,17 @@ const ItemDetailPage = () => {
         {/* Additional Info */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-primary-lightGray p-6 rounded-lg text-center">
-            <div className="text-3xl mb-2">🎁</div>
+            <div className="mb-2"><FaGift className="w-8 h-8 mx-auto text-accent-blue" /></div>
             <h4 className="font-semibold text-primary-black mb-2">Premium Quality</h4>
             <p className="text-neutral-gray text-sm">Authentic items from verified celebrities</p>
           </div>
           <div className="bg-primary-lightGray p-6 rounded-lg text-center">
-            <div className="text-3xl mb-2">🚚</div>
+            <div className="mb-2"><FaTruck className="w-8 h-8 mx-auto text-accent-blue" /></div>
             <h4 className="font-semibold text-primary-black mb-2">Fast Delivery</h4>
             <p className="text-neutral-gray text-sm">Secure shipping to your location</p>
           </div>
           <div className="bg-primary-lightGray p-6 rounded-lg text-center">
-            <div className="text-3xl mb-2">🔒</div>
+            <div className="mb-2"><FaLock className="w-8 h-8 mx-auto text-accent-blue" /></div>
             <h4 className="font-semibold text-primary-black mb-2">Secure Payment</h4>
             <p className="text-neutral-gray text-sm">Safe checkout with encrypted payment</p>
           </div>

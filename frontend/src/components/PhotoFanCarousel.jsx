@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 function PhotoFanCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -83,7 +84,7 @@ function PhotoFanCarousel() {
           }}
           aria-label="Previous photo"
         >
-          <span className={isMobile ? 'text-lg' : 'text-xl'}>‹</span>
+          <FaChevronLeft className={isMobile ? 'w-5 h-5' : 'w-6 h-6'} />
         </button>
 
         {/* Carousel Container */}
@@ -153,7 +154,7 @@ function PhotoFanCarousel() {
           }}
           aria-label="Next photo"
         >
-          <span className={isMobile ? 'text-lg' : 'text-xl'}>›</span>
+          <FaChevronRight className={isMobile ? 'w-5 h-5' : 'w-6 h-6'} />
         </button>
 
         {/* Mobile Navigation Buttons */}
@@ -163,14 +164,14 @@ function PhotoFanCarousel() {
             className="bg-accent-blue hover:bg-blue-700 text-white rounded-full w-9 h-9 flex items-center justify-center transition duration-300"
             aria-label="Previous photo"
           >
-            <span className="text-base">‹</span>
+            <FaChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={handleNext}
             className="bg-accent-blue hover:bg-blue-700 text-white rounded-full w-9 h-9 flex items-center justify-center transition duration-300"
             aria-label="Next photo"
           >
-            <span className="text-base">›</span>
+            <FaChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
