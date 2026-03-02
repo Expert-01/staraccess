@@ -39,7 +39,7 @@ export const TIERS = {
   BRONZE: 'bronze',
   SILVER: 'silver',
   GOLD: 'gold',
-  PLATINUM: 'platinum',
+  PLATINUM: 'platinummmaddeness',
   STANDARD: 'standard'
 }
 
