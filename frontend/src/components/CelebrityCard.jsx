@@ -8,7 +8,7 @@ function CelebrityCard({ celebrity, onClick, index }) {
     if (!celebrity.image) return null
     // If image is a full URL (starts with http), return as-is
     if (celebrity.image.startsWith('http://') || celebrity.image.startsWith('https://')) {
-      return celebrity.image
+      return celebrity.image  
     }
     // For local files, serve from public/uploads/celebrities folder
     return `/uploads/celebrities/${celebrity.image}`

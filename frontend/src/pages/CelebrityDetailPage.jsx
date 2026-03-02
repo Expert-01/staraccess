@@ -80,8 +80,9 @@ function CelebrityDetailPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities/${id}`)
         const data = await response.json()
-        // Use fixed items instead of API items
-        setCelebrity({ ...data, items: FIXED_ITEMS })
+        // Use items from API, or fall back to fixed items if none exist
+        const items = data.items && data.items.length > 0 ? data.items : FIXED_ITEMS
+        setCelebrity({ ...data, items })
         setLoading(false)
       } catch (err) {
         console.error('Error fetching celebrity:', err)

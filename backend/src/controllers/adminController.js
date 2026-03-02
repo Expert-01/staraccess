@@ -60,10 +60,11 @@ const DEFAULT_ITEMS = [
 const createDefaultItems = async (celebrityId) => {
   try {
     for (const item of DEFAULT_ITEMS) {
-      // Insert item
+      // Insert item (use first tier price as default)
+      const defaultPrice = item.tiers[0]?.price || 0
       const itemResult = await query(
-        'INSERT INTO items (celebrity_id, name, description, item_type, has_tiers) VALUES ($1, $2, $3, $4, $5) RETURNING id',
-        [celebrityId, item.name, item.description, item.item_type, true]
+        'INSERT INTO items (celebrity_id, name, description, item_type, has_tiers, price) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
+        [celebrityId, item.name, item.description, item.item_type, true, defaultPrice]
       )
 
       const itemId = itemResult.rows[0].id
