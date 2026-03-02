@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import LandingPage from './pages/LandingPage'
+import ExperiencesPage from './pages/ExperiencesPage'
 import HomePage from './pages/HomePage'
 import CelebrityDetailPage from './pages/CelebrityDetailPage'
 import ItemDetailPage from './pages/ItemDetailPage'
@@ -23,6 +24,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/experiences" element={<ExperiencesPage />} />
             <Route path="/signup" element={<SignupPage setIsAuthenticated={setIsAuthenticated} />} />
             <Route path="/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} setIsAdmin={setIsAdmin} />} />
             <Route path="/home" element={<HomePage />} />

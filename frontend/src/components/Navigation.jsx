@@ -10,7 +10,7 @@ function Navigation({ isAuthenticated, isAdmin }) {
       
       {/* Center Navigation Links */}
       <div className="hidden md:flex gap-12 items-center text-accent-gold/80">
-        <Link to="/" className="hover:text-accent-gold transition duration-300 text-sm uppercase tracking-wider">
+        <Link to="/experiences" className="hover:text-accent-gold transition duration-300 text-sm uppercase tracking-wider">
           Experiences
         </Link>
         <Link to="/home" className="hover:text-accent-gold transition duration-300 text-sm uppercase tracking-wider">

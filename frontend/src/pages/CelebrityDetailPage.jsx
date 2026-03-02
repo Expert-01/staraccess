@@ -80,8 +80,10 @@ function CelebrityDetailPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/celebrities/${id}`)
         const data = await response.json()
+        console.log('📦 Celebrity API Response:', data)
         // Use items from API, or fall back to fixed items if none exist
         const items = data.items && data.items.length > 0 ? data.items : FIXED_ITEMS
+        console.log('🎁 Processed items:', items)
         setCelebrity({ ...data, items })
         setLoading(false)
       } catch (err) {
@@ -186,16 +188,15 @@ function CelebrityDetailPage() {
                   {/* Price Range */}
                   {item.tiers && item.tiers.length > 0 && (
                     <div className="pt-4 border-t border-primary-mediumGray">
-                      {(() => {
-                        const prices = item.tiers.map(t => t.price).filter(p => p !== null && p !== undefined).sort((a, b) => a - b)
-                        const minPrice = prices[0]
-                        const maxPrice = prices[prices.length - 1]
-                        return (
-                          <p className="text-accent-blue font-bold text-lg">
-                            {minPrice === maxPrice ? `$${minPrice}` : `$${minPrice} - $${maxPrice}`}
-                          </p>
-                        )
-                      })()}
+                      {item.tiers.length === 1 ? (
+                        <p className="text-accent-blue font-bold text-lg">
+                          ${item.tiers[0].price || 'N/A'}
+                        </p>
+                      ) : (
+                        <p className="text-accent-blue font-bold text-lg">
+                          ${Math.min(...item.tiers.map(t => t.price || 0))} - ${Math.max(...item.tiers.map(t => t.price || 0))}
+                        </p>
+                      )}
                     </div>
                   )}
                   
