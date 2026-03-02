@@ -181,8 +181,8 @@ JWT tokens are signed with this secret. If changed:
 
 **Development**:
 ```
-STRIPE_SECRET_KEY=sk_test_4eC39HqLyjWDarhtT657DG7P
-STRIPE_PUBLIC_KEY=pk_test_0uqcJxKfQeJzZPfqqcZQDNmg
+STRIPE_SECRET_KEY=sk_test_XXXXXXXXXXXXXXXXXXXX
+STRIPE_PUBLIC_KEY=pk_test_XXXXXXXXXXXXXXXXXXXX
 ```
 
 **Production**:
