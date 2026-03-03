@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ITEM_TYPE_LABELS, ITEM_DESCRIPTIONS, getTierColor } from '../constants/itemTypes'
 import { ITEM_DETAILS, getItemDetailsById } from '../constants/itemDetails'
-import { FaBox, FaGift, FaTruck, FaLock, FaArrowLeft, FaMinus, FaPlus } from 'react-icons/fa'
+import { FaBox, FaGift, FaTruck, FaLock, FaArrowLeft, FaMinus, FaPlus, FaTimes } from 'react-icons/fa'
 
 const ItemDetailPage = () => {
   const { celebrityId, itemId } = useParams()
@@ -13,6 +13,7 @@ const ItemDetailPage = () => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [showPayModal, setShowPayModal] = useState(false)
 
   useEffect(() => {
     loadItemDetails()
@@ -184,7 +185,7 @@ const ItemDetailPage = () => {
                       onClick={() => setSelectedTier(tier)}
                       className={`p-4 border-2 rounded-lg cursor-pointer transition ${
                         selectedTier?.id === tier.id
-                          ? 'border-accent-blue bg-accent-blue bg-opacity-5'
+                          ? 'border-accent-gold bg-accent-gold bg-opacity-10'
                           : 'border-primary-mediumGray hover:border-accent-blue'
                       }`}
                     >
@@ -260,6 +261,14 @@ const ItemDetailPage = () => {
                 <span className="text-lg font-semibold text-primary-black">Total:</span>
                 <span className="text-3xl font-bold text-accent-blue">${totalPrice.toFixed(2)}</span>
               </div>
+              
+              {/* Pay Button */}
+              <button
+                onClick={() => setShowPayModal(true)}
+                className="w-full mt-4 px-6 py-3 bg-accent-gold text-white font-semibold rounded-lg hover:bg-accent-goldDark transition"
+              >
+                Pay
+              </button>
             </div>
 
             {/* Add to Cart Button */}
@@ -285,6 +294,42 @@ const ItemDetailPage = () => {
             </button>
           </div>
         </div>
+
+  
+        {/* Pay Modal */}
+        {showPayModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white text-red-600 p-6 rounded-lg max-w-md w-full relative">
+              {/* Close X button */}
+              <button
+                onClick={() => setShowPayModal(false)}
+                className="absolute top-4 right-4 text-neutral-gray hover:text-neutral-darkGray"
+              >
+                <FaTimes className="w-5 h-5" />
+              </button>
+              <h2 className="text-2xl font-bold mb-4">Payment Instructions</h2>
+              <p className="mb-4">
+                To proceed with payment, please contact the management team for further instructions.
+              </p>
+              <a
+                href="https://t.me/management_team"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-blue font-semibold underline"
+              >
+                Contact Management
+              </a>
+              <div className="mt-6 text-right">
+                <button
+                  onClick={() => setShowPayModal(false)}
+                  className="px-4 py-2 bg-accent-blue text-white rounded hover:bg-accent-blueDark transition"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Additional Info */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
