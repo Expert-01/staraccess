@@ -163,7 +163,7 @@ function ExperiencesPage() {
             <div className="bg-gradient-to-br from-primary-charcoal to-primary-darkBg rounded-lg p-6 border border-accent-gold/10 text-center">
               <div className="text-5xl mb-4"><FaPhone className="w-14 h-14 text-accent-gold mx-auto" /></div>
               <h3 className="text-xl font-bold text-accent-gold mb-2">Call Permit</h3>
-              <p className="text-accent-gold/60 text-sm mb-4">30-minute direct phone conversation</p>
+              <p className="text-accent-gold/60 text-sm mb-4">30-minute direct phone conversation (billed monthly)</p>
               <div className="text-accent-gold/80 text-sm space-y-1">
                 <p className="font-semibold">$300/mo</p>
                 <p className="text-xs text-accent-gold/50">Standard Tier</p>
