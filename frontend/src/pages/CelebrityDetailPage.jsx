@@ -52,9 +52,9 @@ const FIXED_ITEMS = [
   {
     id: 5,
     item_type: 'call_permit',
-    description: 'One-on-one phone call with the celebrity (30 minutes).',
+    description: 'One-on-one phone call with the celebrity (30 minutes) – billed monthly at $300',
     tiers: [
-      { id: 17, tier_name: 'Standard', price: 1000 }
+      { id: 17, tier_name: 'Standard', price: 300 }
     ]
   }
 ]
@@ -181,7 +181,7 @@ function CelebrityDetailPage() {
                           >
                             {tier.tier_name}
                             <div>
-                            ${tier.price}
+                              ${tier.price}{item.item_type === 'call_permit' ? '/mo' : ''}
                             </div>
                           </span>
                         ))}
@@ -197,10 +197,10 @@ function CelebrityDetailPage() {
                       </p>
                     ) : item.tiers && Array.isArray(item.tiers) && item.tiers.length === 1 ? (
                       <p className="text-accent-blue font-bold text-lg">
-                        ${item.tiers[0].price}
+                        ${item.tiers[0].price}{item.item_type === 'call_permit' ? '/month' : ''}
                       </p>
                     ) : item.item_type === 'call_permit' ? (
-                      <p className="text-accent-blue font-bold text-lg">$1000</p>
+                      <p className="text-accent-blue font-bold text-lg">$300/mo</p>
                     ) : (
                       <p className="text-accent-blue font-bold text-lg">$500 - $1750</p>
                     )}

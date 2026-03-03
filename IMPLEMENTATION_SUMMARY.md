@@ -63,7 +63,7 @@ The item tiers feature has been fully implemented with support for tiered pricin
 - Platinum: **$1750**
 
 ### Items with Fixed Pricing (1 option)
-- **Call Permit**: **$1000** (Fixed - no tiers)
+- **Call Permit**: **$300 / month** (Fixed subscription, no tiers)
 
 ## 🔄 User Journey
 

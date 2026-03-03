@@ -12,7 +12,7 @@
 | | Silver | $750 | Variable | 💳 |
 | | Gold | $1000 | Variable | 💳 |
 | | Platinum | $1750 | Variable | 💳 |
-| **Call Permit** | Standard | **$1000** | Variable | ☎️ |
+| **Call Permit** | Standard | **$300/mo** | Variable | ☎️ |
 | **VIP Access** | Bronze | $500 | Variable | ⭐ |
 | | Silver | $750 | Variable | ⭐ |
 | | Gold | $1000 | Variable | ⭐ |
@@ -187,7 +187,7 @@ curl -X POST http://localhost:5000/api/admin/celebrities/1/items \
    - Each has Bronze ($500), Silver ($750), Gold ($1000), Platinum ($1750)
 
 2. **Fixed Price Items** (1 option): Call Permit
-   - Single "standard" tier at $1000
+   - Single "standard" tier at $300 (monthly subscription)
 
 3. **Stock Tracking**
    - Per-tier inventory management

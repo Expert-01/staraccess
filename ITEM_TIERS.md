@@ -17,7 +17,7 @@ The Celebrity Browser now supports tiered pricing for celebrity merchandise item
 - **Tiers**: Different membership levels with increasing benefits
 
 ### 3. **Call Permit**
-- **Pricing**: Fixed ($1000)
+- **Pricing**: Fixed ($300 per month subscription)
 - **Description**: One-on-one phone call with the celebrity (30 minutes)
 - **Tiers**: Single tier (no variations)
 
@@ -342,7 +342,7 @@ When an order is processed, the `order_items` table stores:
 - **Platinum**: $1750 (75% more than Gold)
 
 ### Fixed Price Items
-- **Call Permit**: $1000 (standard tier only)
+- **Call Permit**: $300 / month (standard tier only, subscription)
 
 ## Future Enhancements
 

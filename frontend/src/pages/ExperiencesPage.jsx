@@ -165,7 +165,7 @@ function ExperiencesPage() {
               <h3 className="text-xl font-bold text-accent-gold mb-2">Call Permit</h3>
               <p className="text-accent-gold/60 text-sm mb-4">30-minute direct phone conversation</p>
               <div className="text-accent-gold/80 text-sm space-y-1">
-                <p className="font-semibold">$1,000</p>
+                <p className="font-semibold">$300/mo</p>
                 <p className="text-xs text-accent-gold/50">Standard Tier</p>
               </div>
             </div>

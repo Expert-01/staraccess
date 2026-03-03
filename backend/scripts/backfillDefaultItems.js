@@ -30,9 +30,9 @@ const DEFAULT_ITEMS = [
   {
     name: 'Call Permit',
     item_type: 'call_permit',
-    description: 'One-on-one phone call with the celebrity (30 minutes)',
+    description: 'One-on-one phone call with the celebrity (monthly subscription)',
     tiers: [
-      { tier_name: 'standard', price: 1000, stock: 30, description: '30-minute call' }
+      { tier_name: 'standard', price: 300, stock: 30, description: '30-minute call' }
     ]
   },
   {
