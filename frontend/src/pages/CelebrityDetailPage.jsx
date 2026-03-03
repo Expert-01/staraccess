@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ITEM_TYPE_LABELS, getItemIcon, ITEM_DESCRIPTIONS } from '../constants/itemTypes'
+import { ITEM_TYPE_LABELS, ITEM_DESCRIPTIONS } from '../constants/itemTypes'
+import { getItemIcon } from '../constants/itemIcons'
 
 // Fixed items configuration with all 5 item types and pricing
 const FIXED_ITEMS = [
@@ -154,7 +155,9 @@ function CelebrityDetailPage() {
                   className="bg-white border border-primary-mediumGray rounded-lg p-6 hover:shadow-lg hover:border-accent-blue transition cursor-pointer"
                 >
                   {/* Item Icon */}
-                  <div className="text-5xl mb-4">{getItemIcon(item.item_type)}</div>
+                  <div className="text-accent-blue mb-4 flex items-center justify-center w-20 h-20 bg-primary-lightGray rounded-lg">
+                    {getItemIcon(item.item_type, "large")}
+                  </div>
                   
                   {/* Item Name */}
                   <h3 className="text-xl font-bold text-primary-black mb-2">

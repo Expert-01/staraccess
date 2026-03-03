@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ITEM_TYPE_LABELS, ITEM_DESCRIPTIONS, getTierColor } from '../constants/itemTypes'
+import { ITEM_DETAILS, getItemDetailsById } from '../constants/itemDetails'
 import { FaBox, FaGift, FaTruck, FaLock, FaArrowLeft, FaMinus, FaPlus } from 'react-icons/fa'
 
 const ItemDetailPage = () => {
@@ -14,33 +15,40 @@ const ItemDetailPage = () => {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    fetchItemDetails()
+    loadItemDetails()
   }, [itemId, celebrityId])
 
-  const fetchItemDetails = async () => {
+  const loadItemDetails = () => {
     try {
       setLoading(true)
-      const response = await fetch(
-        `http://localhost:5001/api/items/celebrity/${celebrityId}/item/${itemId}`
-      )
       
-      if (!response.ok) {
-        throw new Error('Failed to fetch item details')
+      // Get item from hardcoded data
+      const itemData = getItemDetailsById(itemId)
+      
+      if (!itemData) {
+        setError('Item not found')
+        setLoading(false)
+        return
       }
 
-      const data = await response.json()
-      setItem(data.item)
-      setCelebrity(data.celebrity)
+      setItem(itemData)
       
       // Auto-select first tier
-      if (data.item.tiers && data.item.tiers.length > 0) {
-        setSelectedTier(data.item.tiers[0])
+      if (itemData.tiers && itemData.tiers.length > 0) {
+        setSelectedTier(itemData.tiers[0])
       }
+      
+      // Mock celebrity data - in real app this would come from CelebrityDetailPage
+      setCelebrity({
+        id: celebrityId,
+        name: `Celebrity #${celebrityId}`,
+        image: null
+      })
       
       setError('')
     } catch (err) {
       setError(err.message)
-      console.error('Error fetching item:', err)
+      console.error('Error loading item:', err)
     } finally {
       setLoading(false)
     }
