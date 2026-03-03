@@ -2,7 +2,8 @@ import { query } from '../db.js'
 
 export const getAllCelebrities = async (req, res) => {
   try {
-    const result = await query('SELECT * FROM celebrities')
+    // order by id descending so newly seeded celebrities appear first
+    const result = await query('SELECT * FROM celebrities ORDER BY id DESC')
     const celebrities = result.rows
 
     // Get items for each celebrity and transform image URLs

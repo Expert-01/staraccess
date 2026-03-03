@@ -8,7 +8,7 @@ const MOCK_CELEBRITIES = [
   {
     id: 13,
     name: 'Neil Diamond',
-    category: 'Musician',
+    category: 'Musician',   
     bio: 'Legendary singer-songwriter known for iconic ballads',
     image: 'neildiamond.jpg',
     followers: 1800000,
@@ -167,7 +167,8 @@ function HomePage() {
         
         // If API returns data, use it; otherwise fall back to mock celebrities
         if (data && data.length > 0) {
-          setCelebrities(data.slice(0, 10))
+          // show all or most recent celebrities (backend now orders newest first)
+          setCelebrities(data) // removed slice to ensure new entries appear
         } else {
           setCelebrities(MOCK_CELEBRITIES)
         }
