@@ -24,15 +24,6 @@ const MOCK_CELEBRITIES = [
     responseTime: '4-5 hours'
   },
   {
-    name: 'Luke Perry',
-    category: 'Actor',
-    bio: 'Iconic actor known for Beverly Hills, 90210 and Riverdale. A legend in television history.',
-    image: 'lukeperry.jpg',
-    followers: 4200000,
-    yearsActive: '1986-2019',
-    responseTime: 'Not available'
-  },
-  {
     name: 'Mark Wahlberg',
     category: 'Actor & Producer',
     bio: 'Award-winning actor and film producer known for action films and business ventures.',

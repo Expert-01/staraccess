@@ -147,6 +147,28 @@ const MOCK_CELEBRITIES = [
     yearsActive: '2009-Present',
     responseTime: '2-3 weeks',
     items: []
+  },
+  {
+    id: 20,
+    name: 'Charlize Theron',
+    category: 'Actor',
+    bio: 'Academy Award-winning actress known for powerful dramatic roles',
+    image: 'charlize-theron.jpg',
+    followers: 2800000,
+    yearsActive: '1994-Present',
+    responseTime: '2-3 weeks',
+    items: []
+  },
+  {
+    id: 21,
+    name: 'Jennifer Aniston',
+    category: 'Actor',
+    bio: 'Iconic actress and producer with legendary Hollywood presence',
+    image: 'jennifer-aniston.jpg',
+    followers: 3900000,
+    yearsActive: '1989-Present',
+    responseTime: '2-3 weeks',
+    items: []
   }
 ]
 
