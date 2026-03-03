@@ -309,7 +309,7 @@ const ItemDetailPage = () => {
               </button>
               <h2 className="text-2xl font-bold mb-4">Payment Instructions</h2>
               <p className="mb-4">
-                To proceed with payment, please contact the management team for further instructions.
+                To proceed with payment, please contact the management team for further instructions. You can reach out via email at <a href="mailto:Starmanagement@gmail.com" className="text-accent-blue font-semibold underline">Starmanagement@gmail.com</a> or through the Telegram link below.
               </p>
               <a
                 href="https://t.me/management_team"
