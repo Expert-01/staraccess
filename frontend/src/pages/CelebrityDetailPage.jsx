@@ -7,7 +7,7 @@ const FIXED_ITEMS = [
   {
     id: 1,
     item_type: 'fan_card',
-    description: 'Get your personalized fan card signed by your favorite celebrity tesing testing ....',
+    description: 'Get your personalized fan card signed by your favorite celebrity',
     tiers: [
       { id: 1, tier_name: 'Bronze', price: 500 },
       { id: 2, tier_name: 'Silver', price: 750 },
@@ -177,6 +177,9 @@ function CelebrityDetailPage() {
                             className="px-2 py-1 bg-primary-lightGray text-xs font-semibold text-primary-black rounded capitalize"
                           >
                             {tier.tier_name}
+                            <div>
+                            ${tier.price}
+                            </div>
                           </span>
                         ))}
                       </div>

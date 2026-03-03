@@ -27,4 +27,4 @@ services:
     buildCommand: "cd frontend && npm install && npm run build"
     envVars:
       - key: VITE_API_URL
-        value: https://celebrity-browser-backend.onrender.com/api
+        value: https://celeb-backend-gy6s.onrender.com/api
