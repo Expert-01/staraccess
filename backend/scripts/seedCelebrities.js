@@ -33,15 +33,6 @@ const MOCK_CELEBRITIES = [
     responseTime: '1-2 hours'
   },
   {
-    name: 'Mary Pia Diana',
-    category: 'Actress',
-    bio: 'Talented actress known for her diverse roles in film and television.',
-    image: 'marypadian.jpg',
-    followers: 890000,
-    yearsActive: '2010-present',
-    responseTime: '3-4 hours'
-  },
-  {
     name: 'Matthew Lillard',
     category: 'Actor',
     bio: 'Versatile actor known for horror films and television series. Known for his intense performances.',
@@ -85,6 +76,24 @@ const MOCK_CELEBRITIES = [
     followers: 55200000,
     yearsActive: '2002-present',
     responseTime: '1-2 hours'
+  },
+  {
+    name: 'Charlize Theron',
+    category: 'Actress & Producer',
+    bio: 'Academy Award-winning actress known for powerful dramatic roles and action films. Renowned for her versatility and commitment to craft.',
+    image: 'charlize-theron.jpg',
+    followers: 28000000,
+    yearsActive: '1994-present',
+    responseTime: '2-3 hours'
+  },
+  {
+    name: 'Jennifer Aniston',
+    category: 'Actress & Producer',
+    bio: 'Iconic actress and producer with legendary Hollywood presence. Known for her role in Friends and successful film career.',
+    image: 'jennifer-aniston.jpg',
+    followers: 39000000,
+    yearsActive: '1989-present',
+    responseTime: '2-3 hours'
   }
 ]
 
