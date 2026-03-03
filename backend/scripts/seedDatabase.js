@@ -86,12 +86,12 @@ const MOCK_CELEBRITIES = [
   },
   {
     id: 109,
-    name: 'Luke Perry',
+    name: 'Johnny Depp',
     category: 'Actor',
-    bio: 'Iconic actor remembered for beloved television roles',
-    image: 'lukeperry.jpg',
-    followers: 1900000,
-    years_active: '1987-2019',
+    bio: 'Versatile actor and producer known for iconic and unconventional roles',
+    image: 'johnnydepp.jpg',
+    followers: 4200000,
+    years_active: '1984-Present',
     response_time: '2-3 weeks'
   },
   {
@@ -105,14 +105,24 @@ const MOCK_CELEBRITIES = [
     response_time: '2-3 weeks'
   },
   {
-    id: 111,
-    name: 'Jay-Z',
-    category: 'Musician',
-    bio: 'Hip-hop mogul and business entrepreneur',
-    image: 'jayz.jpg',
-    followers: 3800000,
-    years_active: '1994-Present',
-    response_time: '3-4 weeks'
+    id: 112,
+    name: 'Brandi Passante',
+    category: 'Actor',
+    bio: 'TV personality and businesswoman known for reality entertainment',
+    image: 'brandipassante.jpg',
+    followers: 1500000,
+    years_active: '2010-Present',
+    response_time: '1-2 weeks'
+  },
+  {
+    id: 113,
+    name: 'Jey Uso',
+    category: 'Athlete',
+    bio: 'Professional wrestler and entertainment performer with global following',
+    image: 'jeyuso.jpg',
+    followers: 2100000,
+    years_active: '2009-Present',
+    response_time: '2-3 weeks'
   }
 ]
 
