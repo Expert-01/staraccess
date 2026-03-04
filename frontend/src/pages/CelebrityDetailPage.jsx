@@ -29,32 +29,32 @@ const FIXED_ITEMS = [
   },
   {
     id: 3,
-    item_type: 'vip_access',
-    description: 'VIP event access and exclusive backstage experience.',
+    item_type: 'call_permit',
+    description: 'One-on-one phone call with the celebrity (30 minutes).',
     tiers: [
-      { id: 9, tier_name: 'Bronze', price: 500 },
-      { id: 10, tier_name: 'Silver', price: 750 },
-      { id: 11, tier_name: 'Gold', price: 1000 },
-      { id: 12, tier_name: 'Platinum', price: 1750 }
+      { id: 9, tier_name: 'Standard', price: 1000 }
     ]
   },
   {
     id: 4,
-    item_type: 'meet_and_greet',
-    description: 'Meet and greet with your favorite celebrity.',
+    item_type: 'vip_access',
+    description: 'VIP event access and exclusive backstage experience.',
     tiers: [
-      { id: 13, tier_name: 'Bronze', price: 500 },
-      { id: 14, tier_name: 'Silver', price: 750 },
-      { id: 15, tier_name: 'Gold', price: 1000 },
-      { id: 16, tier_name: 'Platinum', price: 1750 }
+      { id: 10, tier_name: 'Bronze', price: 500 },
+      { id: 11, tier_name: 'Silver', price: 750 },
+      { id: 12, tier_name: 'Gold', price: 1000 },
+      { id: 13, tier_name: 'Platinum', price: 1750 }
     ]
   },
   {
     id: 5,
-    item_type: 'call_permit',
-    description: 'One-on-one phone call with the celebrity (30 minutes) – billed monthly at $300',
+    item_type: 'meet_and_greet',
+    description: 'Meet and greet with your favorite celebrity.',
     tiers: [
-      { id: 17, tier_name: 'Standard', price: 300 }
+      { id: 14, tier_name: 'Bronze', price: 500 },
+      { id: 15, tier_name: 'Silver', price: 750 },
+      { id: 16, tier_name: 'Gold', price: 1000 },
+      { id: 17, tier_name: 'Platinum', price: 1750 }
     ]
   }
 ]
